@@ -3,18 +3,12 @@
     var fs        = require('fs');
     var path      = require('path');
     var Sequelize = require('sequelize');
-    var basename  = path.basename(__filename);
-     
-    var config    = require('./../../config/config.json');
-    var db        = {};
- 
-console.log("process.env.DB_USERNAME ::" + process.env.DB_USERNAME)
-console.log("db_password ::" + process.env.db_password)
- 
+    var basename  = path.basename(__filename);      
+    var db        = {};  
 
-    var sequelize = new Sequelize(config.db.database, config.db.username, config.db.password,{
-      "dialect":config.db.dialect, 
-      "host":config.db.host 
+    var sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD,{
+      "dialect":process.env.DB_DIALECT, 
+      "host":process.env.DB_HOST 
     });
     
     fs
