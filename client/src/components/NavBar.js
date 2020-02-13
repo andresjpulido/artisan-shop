@@ -87,7 +87,7 @@ _onToggleNav = () => {
             </ul>
 
             {user.username}
-
+            &nbsp;
             <form className="form-inline mt-2 mt-md-0" >              
               <Link to={`/`} onClick={this.handleClick.bind(this)}>Logout</Link>
             </form>

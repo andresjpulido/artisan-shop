@@ -103,8 +103,8 @@ BEGIN
 		WHERE "id_productType" = idProductType
 		AND id_size = idSize;
 	
-		INSERT INTO movement (amount, "id_productType", id_size, id_operation, id_user) 
-			VALUES (requested_amount, idProductType, idSize, idOperation, idUser);		
+		INSERT INTO movement (amount, "id_productType", id_size, id_operation, username) 
+			VALUES (requested_amount, idProductType, idSize, idOperation, username);		
 	END IF;
 	
   END IF;
@@ -117,7 +117,7 @@ BEGIN
 END $$;
 
 
-
+CALL movement ('2', '4', '8', '3', 'admin')
 
 
 
