@@ -25,7 +25,7 @@ class NewProduct extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.history.push('/student')
+    this.props.history.push('/Producttype')
   }
 
   addProduct = () => {
@@ -45,41 +45,21 @@ class NewProduct extends Component {
         <br /><br /><br />
         <h4>New Product</h4>
 
-        <form>
+        <form>           
           <div className="form-group">
-            <label for="typeSelect">Product</label>
-            <select className="form-control" id="typeSelect" value={this.state.type}>
-              <option value="Toki">Toki</option>
-              <option value="Manaia">Manaia</option>
-              <option value="Koru">Koru</option>
-              <option value="Hook">Hook</option>
-            </select>
+            <label for="amountInput">Name</label>
+            <input type="text" className="form-control" id="nameInput" 
+              placeholder="" value={this.state.name} />
           </div>
-          <div className="form-group">
-            <label for="sizeSelect">Size</label>
-            <select className="form-control" id="sizeSelect">
-              <option value="Small">Small</option>
-              <option value="Medium">Medium</option>
-              <option value="Large">Large</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label for="amountInput">Amount</label>
-            <input type="text" className="form-control" id="amountInput" placeholder="" value={this.state.amount} />
-          </div>
-          <button id="b1" className="btn btn-secondary" type="button" onClick={this.addProduct}>Add Product</button>
+
         </form>
 
+        <button type="button" className="btn btn-primary float-left" onClick={this.back}>Back</button>
+        
+        <button type="submit" className="btn btn-primary float-right" onClick={this.handleSubmit}>Save</button>
+
         <br />
-
-        <BootstrapTable
-          striped
-          hover
-          keyField='id'
-          data={this.state.products}
-          columns={this.state.columns} />
-
-        <button type="submit" className="btn btn-primary float-right">Save</button>
+ 
       </div>
     );
   }

@@ -63,10 +63,11 @@ _onToggleNav = () => {
               <li className={this.isAdmin()}>
                 <Link to={`/admin`} className="nav-link" data-toggle="dropdown">Admin</Link>
                 <ul className="dropdown-menu"> 
-                  <li className="text-center"><Link to={`/employees`}>Employees</Link></li>
-                  <li className="text-center"><Link to={`/payslips`}>Payslips</Link></li>
+                  <li className="text-center"><Link to={`/employees`}>Employees</Link></li>                  
                   <li className="text-center"><Link to={`/movements`}>Inventory</Link></li>
                   <li className="text-center"><Link to={`/parameters`}>Parameters</Link></li>
+                  <li className="text-center"><Link to={`/payslips`}>Payslips</Link></li>
+                  <li className="text-center"><Link to={`/producttype`}>Product Type</Link></li>
                 </ul>
               </li>              
               <li className="dropdown">

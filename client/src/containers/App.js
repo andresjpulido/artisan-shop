@@ -19,6 +19,7 @@ import Employee from './Admin/Employee';
 import Payslip from './Admin/Payslip';
 import Payslips from './Admin/Payslips';
 import Parameters from './Admin/Parameters'
+import ProductType from './Admin/ProductType'
 import OnePayslip from './EA/OnePayslip';
 
 
@@ -116,6 +117,13 @@ class App extends Component {
                 exact
                 component={Payslips}
               />   
+
+              <Route
+                path="/producttype"
+                exact
+                component={ProductType}
+              />
+
               <Route
                 path="/onepayslip"
                 exact

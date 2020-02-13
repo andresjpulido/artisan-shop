@@ -146,7 +146,7 @@ class Movement extends Component {
               <div className="form-group">
                   <label for="operation">Operation</label>
                   <select className="form-control" id="id_operation" name="id_operation"
-                onChange={this.handleChange} value={this.state.movement.id_operation}>                
+                onChange={this.handleChange} value={this.state.id_operation}>                
                   {this.props.operations.map((item) => <option key={item.id} 
                   value={item.id}>{item.name}</option>)}
                   </select> 
@@ -154,7 +154,7 @@ class Movement extends Component {
               <div className="form-group">
                   <label for="nameInput">ProductType</label>
                   <select className="form-control" id="id_productType" name="id_productType" 
-                  onChange={this.handleChange} value={this.state.movement.id_productType} >
+                  onChange={this.handleChange} value={this.state.id_productType} >
                   {this.props.productTypes.map((item) => <option key={item.value} 
                   value={item.id}>{item.name}</option>)}
                   </select>
@@ -167,7 +167,7 @@ class Movement extends Component {
               <div className="form-group">
                   <label for="exampleFormControlSelect1">Size</label>
                   <select className="form-control" id="id_size" name="id_size" 
-                  onChange={this.handleChange} value={this.state.movement.id_size} >
+                  onChange={this.handleChange} value={this.state.id_size} >
                   {this.props.sizes.map((item) => <option key={item.value} 
                   value={item.id}>{item.name}</option>)}
                   </select>

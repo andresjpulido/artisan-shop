@@ -137,7 +137,7 @@ class Movements extends Component {
           <div className="form-group">
             <label for="nameInput">Week:</label>
             <select className="form-control" id="week" name="week"  
-              onChange={this.handleChange} value={this.state.weeks[0]}>                
+              onChange={this.handleChange} value={this.state.week}>                
                   {this.state.weeks.map((item) => <option key={item.id} 
                   value={item.id}>{item}</option>)}
             </select> 
