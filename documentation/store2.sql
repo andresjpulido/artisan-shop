@@ -116,8 +116,7 @@ BEGIN
   
 END $$;
 
-
-CALL movement ('2', '4', '8', '3', 'admin')
+ 
 
 
 

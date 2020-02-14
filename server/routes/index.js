@@ -54,7 +54,8 @@ api.get('/orders/opened', OrderCtrl.getOpened)
 //api.get('/payslips', PayslipsCtrl.getPayslips)
 //api.get('/payslips/:userid', PayslipsCtrl.getPayslipsByUserId)
 api.get('/parameters', ParameterCtrl.findAll)
-api.get('/productTypes', ProductTypeCtrl.findAll)
+api.get('/productType', ProductTypeCtrl.findAll)
+api.post('/productType', ProductTypeCtrl.create)
 api.post('/private', auth, UserCtrl.private) 
 
 //return pdf file

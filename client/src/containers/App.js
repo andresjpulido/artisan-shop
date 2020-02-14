@@ -11,7 +11,7 @@ import Inventory from './inventory/Inventory';
 import Movement from './inventory/movement';
 import Movements from './Admin/movements';
 import ExtraHours from './ExtraHours';
-import NewProduct from './NewProduct';
+import NewProductType from './NewProductType';
 import NewEA from './EA/NewEA';
 import Admin from './Admin/Admin';
 import Employees from './Admin/Employees';
@@ -93,9 +93,9 @@ class App extends Component {
                 component={ExtraHours}
               />
               <Route
-                path="/newproduct"
+                path="/newproducttype"
                 exact
-                component={NewProduct}
+                component={NewProductType}
               />
               <Route
                 path="/newea"

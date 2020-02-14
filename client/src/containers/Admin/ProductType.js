@@ -21,7 +21,7 @@ class ProductType extends Component {
  
   handleNew = (e) => {
     e.preventDefault();
-    this.props.history.push('/newproduct')
+    this.props.history.push('/newproducttype')
   }
 
   componentWillMount() {   
@@ -31,10 +31,7 @@ class ProductType extends Component {
   render() {
  
     const { error, pending} = this.props;
-    console.log( error, pending)
- 
      
-
     return (
       <div className="container">
 

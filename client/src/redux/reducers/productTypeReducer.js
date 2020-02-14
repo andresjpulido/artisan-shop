@@ -1,7 +1,10 @@
-import { GET_PRODUCTTYPE } from '../actions/productTypeActions';
+import { GET_PRODUCTTYPE, CREATE_PRODUCTTYPE } from '../actions/productTypeActions';
 
   const initialState = {
-    productTypes: [] 
+    productTypes: [] ,
+    productType: { name:""},
+    pending: false,
+    error: null
   }
      
   export default (state = initialState, action) => {
@@ -14,7 +17,15 @@ import { GET_PRODUCTTYPE } from '../actions/productTypeActions';
           error: action.error,
           productTypes: action.payload,
         }
- 
+
+      case CREATE_PRODUCTTYPE:
+        return {
+          ...state,
+          pending: false,
+          error: action.error, 
+          productType: action.payload
+        } 
+
       default:
         return { ...state }
     }
@@ -22,4 +33,5 @@ import { GET_PRODUCTTYPE } from '../actions/productTypeActions';
    
 
   
-  export const getAllproductTypes = state => state.productTypes; 
+  export const getAllproductTypes = state => state.productTypes;   
+  export const create = state => state.productType; 

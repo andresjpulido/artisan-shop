@@ -18,7 +18,7 @@ export const GET_MOV_URL = HOST + '/api/movements'
 
 export const GET_OPERATION_URL = HOST + '/api/operations'
 
-export const GET_PRODUCTTYPE_URL = HOST + '/api/producttypes'
+export const GET_PRODUCTTYPE_URL = HOST + '/api/producttype'
 
 export const GET_SIZE_URL = HOST + '/api/sizes'
 

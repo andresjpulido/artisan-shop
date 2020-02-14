@@ -86,27 +86,28 @@ class Users {
       include:[ model.employee ],
       where: {
         username: req.body.username,
-        //password: req.body.password
+        password: req.body.password
       }
     }).then(
-
-
-      function(user) {
-var i = Object.keys(user).length
-console.log(Object.keys(user).length)
  
-
+      function(result) {
+      var i = Object.keys(result).length
+     
         if (i == 0) {
           console.log("usuario no encontrado")
           return res.status(404).send({ message: 'No existe el usuario' })
+
         } else {
            
+          result[0].lastlogin = new Date();
+          result[0].save();
+
           return res.status(200).send({
             message: 'Te has logueado correctamente',
-            token: service.createToken(user[0]),
-            username: user[0].username,
-            lastlogin: user[0].lastlogin,
-            employee: user[0].employee
+            token: service.createToken(result[0]),
+            username: result[0].username,
+            lastlogin: result[0].lastlogin,
+            employee: result[0].employee
           })
           
         }
