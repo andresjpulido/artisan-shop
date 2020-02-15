@@ -61,10 +61,11 @@ class NewProductType extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    error: state.generalReducer.error,
+    pending: state.generalReducer.pending,
     user: state.authReducer.user,
-    error: state.error,
     productType: state.productTypeReducer.productType,
-    pending: state.pending
+     
   }
 }
  

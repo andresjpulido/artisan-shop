@@ -1,4 +1,4 @@
-import {SIGNIN, SIGNIN_ERROR} from "../actions/authAction"
+import {SIGNIN} from "../actions/authAction" 
 
 const initialState = {
     user : {},
@@ -11,14 +11,9 @@ export default (state = initialState, action) => {
       
         case SIGNIN: { 
             return Object.assign({}, state, {user: action.payload})
-        } 
-   
-        case SIGNIN_ERROR: { 
-            return Object.assign({}, state, {user:{},error: action.error})
-        } 
-
-        default:{
-            //return Object.assign({}, state, {user: {}})      
+        }  
+        
+        default:{       
             return { ...state }
         }
     }

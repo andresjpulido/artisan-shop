@@ -59,10 +59,11 @@ class ExtraHours extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.authReducer.user,
-    error: state.error,
+    error: state.generalReducer.error,
+    pending: state.generalReducer.pending,
+    user: state.authReducer.user,     
     unpaidHours: state.hourReducer.unpaidHours,
-    pending: state.pending
+     
   }
 }
  

@@ -173,10 +173,11 @@ class Movements extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.error,
+    error: state.generalReducer.error,
+    pending: state.generalReducer.pending,
     movements: state.movementsReducer.movements,
     weeklyMovements: state.movementsReducer.weeklyMovements,
-    pending: state.pending
+     
   }
 }
  

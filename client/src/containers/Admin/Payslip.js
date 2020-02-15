@@ -47,9 +47,10 @@ class Payslip extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.error,
+    error: state.generalReducer.error,
+    pending: state.generalReducer.pending,
     employees: state.employeeReducer.employees,
-    pending: state.pending
+     
   };
 };
 

@@ -105,10 +105,10 @@ class payslips extends Component {
 const mapStateToProps = (state) => {
   console.log(state)
   return {
-    error: state.error,
+    error: state.generalReducer.error,
+    pending: state.generalReducer.pending,
     payslips: state.payslipReducer.payslips,
-    employees: state.employeeReducer.employees,
-    pending: state.pending,
+    employees: state.employeeReducer.employees,     
     user: state.authReducer.user
   }
 }

@@ -191,7 +191,8 @@ class Movement extends Component {
   
   const mapStateToProps = (state) => {
     return {
-      error: state.errorReducer.error,
+      error: state.generalReducer.error,
+      pending: state.generalReducer.pending,
       inventory: state.inventoryReducer.inventory,
       movements: state.inventoryReducer.movements,
       movement: state.inventoryReducer.movement,
@@ -199,8 +200,7 @@ class Movement extends Component {
       operation: state.operationReducer.operation,
       productTypes: state.productTypeReducer.productTypes,
       sizes: state.sizeReducer.sizes,
-      user: state.authReducer.user,
-      pending: state.pending
+      user: state.authReducer.user 
     }
   }
    

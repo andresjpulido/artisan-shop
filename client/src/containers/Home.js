@@ -61,8 +61,8 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.authReducererror, 
-    pending: state.pending,
+    error: state.generalReducer.error,
+    pending: state.generalReducer.pending,
     user: state.authReducer.user,
     orders: state.orderReducer.orders
   }

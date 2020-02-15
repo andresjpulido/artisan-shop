@@ -63,9 +63,9 @@ class Inventory extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.error,
-    inventory: state.inventoryReducer.inventory,
-    pending: state.pending
+    error: state.generalReducer.error,
+    pending: state.generalReducer.pending,
+    inventory: state.inventoryReducer.inventory 
   }
 }
  

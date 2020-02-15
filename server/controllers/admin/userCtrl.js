@@ -99,6 +99,7 @@ class Users {
 
         } else {
            
+          let lastlogin = result[0].lastlogin;
           result[0].lastlogin = new Date();
           result[0].save();
 
@@ -106,7 +107,7 @@ class Users {
             message: 'Te has logueado correctamente',
             token: service.createToken(result[0]),
             username: result[0].username,
-            lastlogin: result[0].lastlogin,
+            lastlogin: lastlogin,
             employee: result[0].employee
           })
           

@@ -55,6 +55,8 @@ class Orders extends Component {
 }
  
 const mapStateToProps = state => ({
+    error: state.generalReducer.error,
+    pending: state.generalReducer.pending,
     orders : state.orderReducer.orders,
     items: state.items
 });

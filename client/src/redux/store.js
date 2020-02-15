@@ -10,7 +10,7 @@ import inventoryReducer from './reducers/inventoryReducer'
 import operationReducer from './reducers/operationReducer'
 import productTypeReducer from './reducers/productTypeReducer'
 import sizeReducer from './reducers/sizeReducer'
-import errorReducer from './reducers/errorReducer'
+import generalReducer from './reducers/generalReducer'
 import movementsReducer from './reducers/movementsReducer'
 import parameterReducer from './reducers/parameterReducer'
 
@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
     operationReducer,
     productTypeReducer,
     sizeReducer,
-    errorReducer,
+    generalReducer,
     movementsReducer,
     parameterReducer
 })

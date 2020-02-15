@@ -76,9 +76,9 @@ class Employees extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.error,
-    employees: state.employeeReducer.employees,
-    pending: state.pending
+    error: state.generalReducer.error,
+    pending: state.generalReducer.pending,
+    employees: state.employeeReducer.employees,     
   }
 }
  

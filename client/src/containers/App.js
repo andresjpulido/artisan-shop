@@ -21,15 +21,18 @@ import Payslips from './Admin/Payslips';
 import Parameters from './Admin/Parameters'
 import ProductType from './Admin/ProductType'
 import OnePayslip from './EA/OnePayslip';
-
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux'; 
 
 class App extends Component {
  
 
   render() {
 
+    console.log(this.props.pending)
     //const session = localStorage.getItem('session');
- 
+ var _pending = this.props.pending
+
     return (
       <div>
 
@@ -131,6 +134,16 @@ class App extends Component {
               />                     
               <Redirect to="/" />
             </Switch>
+
+            {
+            _pending   &&
+            <div className="d-flex justify-content-center">
+              <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+              </div>
+            </div>
+            }
+   
         </div>
         </BrowserRouter>
         <Footer />
@@ -138,5 +151,17 @@ class App extends Component {
     );
   }
 }
+ 
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    error: state.generalReducer.error, 
+    pending: state.generalReducer.pending 
+  }
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  
+}, dispatch) 
+
+export default (connect(mapStateToProps, mapDispatchToProps))(App);

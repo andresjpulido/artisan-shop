@@ -57,7 +57,7 @@ class Parameters extends Component {
         <BootstrapTable
           striped
           hover
-          keyField='id'
+          keyField='code'
           data={this.props.parameters}
           columns={this.state.columns} />
    
@@ -68,9 +68,10 @@ class Parameters extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.error,
+    error: state.generalReducer.error,
+    pending: state.generalReducer.pending,
     parameters: state.parameterReducer.parameters,
-    pending: state.pending
+     
   }
 }
  
