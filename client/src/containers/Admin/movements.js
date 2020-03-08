@@ -4,7 +4,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getMovementsByPeriod, weeklyReport } from '../../redux/actions/movementsActions'
-
+import { dateFormatter } from '../../utils/formatters'
 
 function addDays(date, days) {
   var result = new Date(date);
@@ -28,15 +28,11 @@ return week
 function daysIntoYear(date){
     return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
 }
-
-
-
+ 
+ 
 class Movements extends Component {
 
   state = {
-    amount: 0,
-    type: "Toki",
-    size: "Small",
     movements: [],
     weeklyMovements: [],
     columns: [      
@@ -59,6 +55,7 @@ class Movements extends Component {
           dataField: 'createdAt',
           text: 'Date',
           sortable: true,
+          formatter: dateFormatter
       },   
       {
           dataField: 'productType.name',
@@ -126,7 +123,7 @@ class Movements extends Component {
   }
 
   render() {
-  
+  console.log(this.props.weeklyMovements, this.props.movements)
     return (
       <div className="container">
 
@@ -135,7 +132,7 @@ class Movements extends Component {
 
         <form>
           <div className="form-group">
-            <label for="nameInput">Week:</label>
+            <label htmlFor="nameInput">Week:</label>
             <select className="form-control" id="week" name="week"  
               onChange={this.handleChange} value={this.state.week}>                
                   {this.state.weeks.map((item) => <option key={item.id} 

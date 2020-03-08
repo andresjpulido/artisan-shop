@@ -19,9 +19,9 @@ class Login extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
-  handleSubmit = (e) => {
-    const { username, password } = this.state;
+  handleSubmit = (e) => { 
     e.preventDefault();
+    const { username, password } = this.state;
     this.props.signIn(username, password)
   }
 
@@ -73,8 +73,12 @@ class Login extends Component {
                 </div>                
                 <br />
                 <button type="submit" className="btn btn-primary float-right" disabled={this.state.isValid}>Login</button>
-                <br />
-                {er && <p className="text-danger">{er.message}</p>}
+                <br /> 
+
+                {er && <div className="alert alert-danger" role="alert">
+                {er.message}
+                </div>}
+                
               </form>
 
             </div>

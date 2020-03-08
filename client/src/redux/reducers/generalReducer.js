@@ -14,20 +14,21 @@ import {PENDING, FINISHED, SHOW_ERRORS} from '../constants/ActionTypes'
           error: action.error,           
         }
 
-        case PENDING:
-          return {
-            ...state,           
-            pending: true           
-          }        
+      case PENDING:
+        return {
+          ...state,           
+          pending: true           
+        }        
  
-          case FINISHED:
-            return {
-              ...state,           
-              pending: false           
-            } 
+      case FINISHED:
+        return {
+          ...state,           
+          pending: false           
+        } 
 
       default:
         return { ...state }
+        
     }
   }
    

@@ -155,7 +155,7 @@ class Movement extends Component {
                   <label for="nameInput">ProductType</label>
                   <select className="form-control" id="id_productType" name="id_productType" 
                   onChange={this.handleChange} value={this.state.id_productType} >
-                  {this.props.productTypes.map((item) => <option key={item.value} 
+                  {this.props.productTypes.map((item) => <option key={item.id} 
                   value={item.id}>{item.name}</option>)}
                   </select>
               </div>

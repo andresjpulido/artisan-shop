@@ -60,8 +60,8 @@ class NewEA extends Component {
           </div>
           <div className="form-group">
             <label for="amountInput">Amount</label>
-            <select className="form-control" id="amount" name="amount" value={this.props.hour.amount} 
-              onChange={this.handleChange} >
+            <select className="form-control" id="amount" name="amount" 
+            value={this.props.hour.amount} onChange={this.handleChange} >
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>

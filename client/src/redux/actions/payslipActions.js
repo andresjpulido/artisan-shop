@@ -1,7 +1,5 @@
- 
-import axios from 'axios'
-
 import {GET_PAYSLIPS_URL } from '../constants/webservices'
+import ActionUtility from './utilAction'
 
 export const FETCH_PAYSLIPS_PENDING = 'FETCH_PAYSLIPS_PENDING';
 export const FETCH_PAYSLIPS_SUCCESS = 'FETCH_PAYSLIPS_SUCCESS';
@@ -31,25 +29,12 @@ function fetchPayslipsError(error) {
   
 function getPayslips(){
 
-    let token = localStorage.getItem('session')
-    
+    let url = GET_PAYSLIPS_URL;
+
     return (dispatch, getState)=>{
-        axios.get(GET_PAYSLIPS_URL,{
-            headers: {
-                'Authorization': 'Bearer ' + token,
-                'Content-Type': 'application/x-www-form-urlencoded'
-              } 
-        })
-        .then((response) => {
-            console.log("se ha invocado el servicio de payslips", response.data)
-            dispatch( { type: GET_PAYSLIPS, payload: response.data } ) 
-             
-        }, (error) => {
-            //dispatch( { type: SIGNIN, payload: error } ) 
-            console.log(error);
-                       
-        }) 
+        ActionUtility.invokeServiceGet(dispatch, GET_PAYSLIPS, url);
     }
+ 
 }
 
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { connect } from 'react-redux'; 
 import {getOrders} from '../redux/actions/orderActions';
+import { dateFormatter } from '../utils/formatters'
 
 class Orders extends Component {
  
@@ -22,7 +23,8 @@ class Orders extends Component {
     {
       dataField: 'createdAt',
       text: 'Date',
-      sort: true
+      sort: true,
+      formatter: dateFormatter
     }] 
   }
 
@@ -31,9 +33,12 @@ class Orders extends Component {
     this.props.history.push('/student')
   }
   
-  render() {
+
+  componentWillMount() {  
     this.props.getOrders();
-      
+  }
+
+  render() {
     return (
       <div className="container"> 
 
@@ -45,10 +50,7 @@ class Orders extends Component {
           hover
           keyField='id'
           data={this.props.orders}
-          columns={this.state.columns} />
- 
-        
-
+          columns={this.state.columns} /> 
       </div>
     );
   }

@@ -16,15 +16,15 @@ class Order extends Component {
 
         <form>
         <div className="form-group">
-          <label for="nameInput">Name</label>
+          <label htmlFor="nameInput">Name</label>
           <input type="text" className="form-control" id="nameInput" placeholder="Name" />
         </div>
           <div className="form-group">
-            <label for="exampleFormControlInput1">Email address</label>
+            <label htmlFor="exampleFormControlInput1">Email address</label>
             <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@domain.com" />
           </div>
           <div className="form-group">
-            <label for="exampleFormControlSelect1">Product</label>
+            <label htmlFor="exampleFormControlSelect1">Product</label>
             <select className="form-control" id="exampleFormControlSelect1">
               <option>Toki</option>
               <option>Manaia</option>
@@ -34,12 +34,12 @@ class Order extends Component {
             </select>
           </div>
           <div className="form-group">
-            <label for="record">Record</label>
+            <label htmlFor="record">Record</label>
             <input type="text" className="form-control" id="record" placeholder="" />
           </div>
           <button id="b1" className="btn btn-secondary" type="button">Add Product</button>
           <div className="form-group">
-            <label for="exampleFormControlSelect2">Amount</label>
+            <label htmlFor="exampleFormControlSelect2">Amount</label>
             <input type="text" className="form-control" id="exampleFormControlSelect2" placeholder="" />
           </div>
           <button id="b1" className="btn btn-secondary" type="button">Add Product</button>

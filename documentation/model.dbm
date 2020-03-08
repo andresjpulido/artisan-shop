@@ -3,9 +3,10 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.1" last-position="622,1379" last-zoom="1"
+<dbmodel pgmodeler-ver="0.9.1" last-position="27,1143" last-zoom="1"
 	 default-schema="public" default-owner="postgres">
-
+<database name="store" is-template="false" allow-conns="true">
+</database>
 
 <schema name="public" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
@@ -417,15 +418,6 @@ insert into hour (activity,start_date,end_date,id_emp) values('polishing','2019-
 		<object name="productType_fk" index="1"/>
 		<object name="size_fk" index="2"/>
 	</customidxs>
-	<initial-data>
-<![CDATA[id•description•createdAt•updatedAt•amount•id_productType•id_size⸣
-••••50•7•1⸣
-••••15•1•1⸣
-••••1•2•2⸣
-••••1•3•2⸣
-••••2•7•2⸣
-••••30•3•3]]>
-	</initial-data>
 </table>
 
 <relationship name="productType_has_many_product" type="rel1n"
@@ -537,11 +529,11 @@ insert into hour (activity,start_date,end_date,id_emp) values('polishing','2019-
 	<column name="description">
 		<type name="varchar" length="255"/>
 	</column>
-	<column name="createdAt" default-value="now()">
-		<type name="timestamp" length="0"/>
+	<column name="createdAt" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 	</column>
-	<column name="updatedAt" default-value="now()">
-		<type name="timestamp" length="0"/>
+	<column name="updatedAt" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 	</column>
 	<column name="amount" default-value="0">
 		<type name="smallint" length="0"/>
@@ -564,11 +556,6 @@ insert into hour (activity,start_date,end_date,id_emp) values('polishing','2019-
 		<object name="productType_fk" index="2"/>
 		<object name="size_fk" index="0"/>
 	</customidxs>
-	<initial-data>
-<![CDATA[id•description•createdAt•updatedAt•amount•id_size•id_operation•id_productType•id_user⸣
-••••2•1•1•7•1⸣
-••••1•2•1•7•1]]>
-	</initial-data>
 </table>
 
 <relationship name="size_has_many_movement" type="rel1n"

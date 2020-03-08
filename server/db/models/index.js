@@ -13,10 +13,13 @@ console.log(process.env.DB_DATABASE,
     var sequelize = new Sequelize(
       process.env.DB_DATABASE, 
       process.env.DB_USERNAME, 
-      process.env.DB_PASSWORD,{
+      process.env.DB_PASSWORD,
+      {
         dialect: process.env.DB_DIALECT, 
-        host: process.env.DB_HOST 
-      } 
+        host: process.env.DB_HOST,
+        timezone: '+13:00',
+        useUTC: true
+      }
     );
     
     fs

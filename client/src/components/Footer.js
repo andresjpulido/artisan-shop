@@ -6,7 +6,7 @@ class Footer extends Component {
       <div>
         <br /><br /><br /><br />
         <footer className="footer">
-          <div className="text-center">© 2019 Developed by
+          <div className="text-center">© 2020 Developed by
             <a href="http://www.andresjpulido.com/"> AP</a>
           </div>
         </footer>

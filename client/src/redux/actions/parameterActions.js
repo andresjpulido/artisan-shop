@@ -9,6 +9,7 @@ function getParameters(){
     let token = localStorage.getItem('session')
     
     return (dispatch, getState)=>{
+        
         dispatch( { type: PENDING, payload: null } ) 
 
         axios.get(GET_PARAMETER_URL,{

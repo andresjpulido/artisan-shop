@@ -25,7 +25,7 @@ console.log(payload)
       if (payload.exp <= moment().unix()) {
         reject({
           status: 401,
-          message: 'El token ha expirado'
+          message: 'Token have expired'
         })
 
       }

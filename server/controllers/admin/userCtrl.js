@@ -78,10 +78,7 @@ class Users {
   }
 
   static signIn(req, res) {
-
-    console.log("ejecutando el metodo signin >>>>>" + JSON.stringify(req.body))
-    console.log(JSON.stringify(req.body, null, 2))
-
+  
     user.findAll({
       include:[ model.employee ],
       where: {
@@ -94,8 +91,8 @@ class Users {
       var i = Object.keys(result).length
      
         if (i == 0) {
-          console.log("usuario no encontrado")
-          return res.status(404).send({ message: 'No existe el usuario' })
+           
+          return res.status(404).send({ message: 'User or password no valid' })
 
         } else {
            
