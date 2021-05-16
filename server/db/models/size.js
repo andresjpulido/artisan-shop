@@ -19,8 +19,6 @@ export default (sequelize, DataTypes) => {
        foreignKey: 'id'
      })
   };
-
-  console.log("invoke Size model")
  
   return Size;
 };

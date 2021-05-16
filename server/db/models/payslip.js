@@ -21,9 +21,7 @@ export default (sequelize, DataTypes) => {
       foreignKey: 'employeeid' 
     })
   };
-
-  console.log("invocacion del modelo Payslip")
-
+ 
   return Payslip;
 };
  

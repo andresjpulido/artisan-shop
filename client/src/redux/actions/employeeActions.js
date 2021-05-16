@@ -37,7 +37,7 @@ function fetchEmployeesError(error) {
 function getAllEmployees(){
 
     let url = GET_EMP_URL
-
+console.log("invocando + getAllEmployees")
     return (dispatch, getState)=>{
         ActionUtility.invokeServiceGet(dispatch, FETCH_EMPLOYEES, url);
     }

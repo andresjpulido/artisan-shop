@@ -17,6 +17,7 @@ import MovementCtrl from '../controllers/movementCtrl'
 import OperationCtrl from '../controllers/operationCtrl'
 import StatusCtrl from '../controllers/statusCtrl'
 import OrderCtrl from '../controllers/orderCtrl'
+import ReportCtrl from '../controllers/reportCtrl'
 import { url } from 'inspector';
 
 const auth = require('../middlewares/auth')
@@ -67,10 +68,12 @@ api.get('/payslips', auth, PayslipsCtrl.getPayslips)
 api.get('/status', StatusCtrl.getAll)
 api.get('/sizes', SizeCtrl.findAll)
 api.post('/signup', UserCtrl.signUp)
-api.post('/signin', UserCtrl.signIn)
+api.post('/signIn', UserCtrl.signIn)
 
 api.post('/user', auth, UserCtrl.create)
 api.get('/version',UserCtrl.version )
+
+api.get('/productionreport/:startdate/:enddate', ReportCtrl.production )
 
 //api.get('/payslip/:payslipid', asyncMiddleware(async (req, res, next) => {
     /* 

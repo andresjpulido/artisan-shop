@@ -18,8 +18,6 @@ export default (sequelize, DataTypes) => {
   parameter.associate = function(models) {
      
   };
-
-  console.log("invoke parameter model")
  
   return parameter;
 };

@@ -29,10 +29,7 @@ export default (sequelize, DataTypes) => {
       foreignKey: 'id_productType' 
     })   
   };
-
-  console.log("invocake Inventory model")
  
-
   return inventoryModel;
 };
  

@@ -6,7 +6,7 @@ import {PENDING, FINISHED, SHOW_ERRORS} from '../constants/ActionTypes'
 export const SIGNIN = "SIGNIN"  
 
 export default function signIn (username_, password_){
-    
+
     return (dispatch, getState)=>{
 
         dispatch( { type: PENDING, payload: null } ) 
@@ -20,8 +20,7 @@ export default function signIn (username_, password_){
             dispatch( { type: SIGNIN, payload: response.data } ) 
             dispatch( { type: FINISHED, payload: null } )
         })
- 
-        
+         
         .catch(function (error) {
 
             console.log(error)

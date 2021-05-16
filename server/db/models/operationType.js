@@ -18,8 +18,6 @@ export default (sequelize, DataTypes) => {
     // associations can be defined here
   };  
 
-  console.log("invocacion del modelo operationType")
-
   return operationType;
 };
  

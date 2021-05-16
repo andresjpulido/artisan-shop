@@ -17,9 +17,7 @@ export default (sequelize, DataTypes) => {
   Status.associate = function(models) {
     // associations can be defined here
   };
-
-  console.log("invocacion del modelo status")
-
+ 
   return Status;
 };
  

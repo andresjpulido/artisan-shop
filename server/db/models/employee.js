@@ -30,9 +30,7 @@ export default (sequelize, DataTypes) => {
       foreignKey: 'id' 
     })
   };  
-
-  console.log("invocacion del modelo employee")
-
+ 
   return Employee;
 };
  

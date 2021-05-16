@@ -78,16 +78,19 @@ class Users {
   }
 
   static signIn(req, res) {
-  
-    user.findAll({
+    console.log("userCtrl.signIn ")
+     
+      user.findOne({
       include:[ model.employee ],
       where: {
         username: req.body.username,
         password: req.body.password
       }
     }).then(
- 
+
       function(result) {
+
+        console.log("userCtrl.signIn.findAll", result)
       var i = Object.keys(result).length
      
         if (i == 0) {
@@ -96,20 +99,21 @@ class Users {
 
         } else {
            
-          let lastlogin = result[0].lastlogin;
-          result[0].lastlogin = new Date();
-          result[0].save();
+          let lastlogin = result.lastlogin;
+          result.lastlogin = new Date();
+          result.save();
 
           return res.status(200).send({
             message: 'Te has logueado correctamente',
-            token: service.createToken(result[0]),
-            username: result[0].username,
+            token: service.createToken(result.username),
+            username: result.username,
             lastlogin: lastlogin,
-            employee: result[0].employee
+            employee: result.employee
           })
           
-        }
-      }
+        } 
+      } 
+     
       /*
       user => res.status(200).send({
       message: 'Te has logueado correctamente',
@@ -130,7 +134,9 @@ class Users {
           message: 'Error'
         })
 
-  });;
+  });
+ 
+  console.log("finaliza")
   }
 
   static private (req,res){ 

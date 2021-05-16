@@ -22,9 +22,7 @@ export default (sequelize, DataTypes) => {
   Hour.associate = function(models) {
     // associations can be defined here
   };
-
-  console.log("invocacion del modelo hour")
-
+ 
   return Hour;
 };
  

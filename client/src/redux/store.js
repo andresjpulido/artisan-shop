@@ -13,6 +13,7 @@ import sizeReducer from './reducers/sizeReducer'
 import generalReducer from './reducers/generalReducer'
 import movementsReducer from './reducers/movementsReducer'
 import parameterReducer from './reducers/parameterReducer'
+import reportReducer from './reducers/reportReducer'
 
 const rootReducer = combineReducers({
     employeeReducer, 
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
     sizeReducer,
     generalReducer,
     movementsReducer,
-    parameterReducer
+    parameterReducer,
+    reportReducer
 })
 
 const store = createStore(

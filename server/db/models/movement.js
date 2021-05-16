@@ -31,10 +31,7 @@ export default (sequelize, DataTypes) => {
     }) 
 
   };
-
-  console.log("invocake movementModel model")
  
-
   return movementModel;
 };
  

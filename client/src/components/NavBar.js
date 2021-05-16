@@ -55,7 +55,8 @@ _onToggleNav = () => {
           aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className={(navCollapsed ? 'collapse' : '') + ' navbar-collapse ' + navCollapsed} id="navbarCollapse">
+          <div className={(navCollapsed ? 'collapse' : '') + ' navbar-collapse ' + navCollapsed} 
+          id="navbarCollapse">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                 <Link to={`/home`} className="nav-link">Home </Link>
@@ -83,7 +84,15 @@ _onToggleNav = () => {
               <li className="dropdown">
                 <Link to={`/ea`} className="nav-link">Hours</Link> 
               </li>
-
+              <li className="dropdown">
+                <Link to={`/reports/reports`} className="nav-link" data-toggle="dropdown">Reports</Link>
+                <ul className="dropdown-menu">
+                  <li className="text-center">
+                    <Link to={`/reports/production`}>Production</Link></li>
+                  <li className="text-center">
+                    <Link to={`/reports/orders`}>Activity</Link></li>
+                </ul>
+              </li>
             </ul>
 
             {user.username}

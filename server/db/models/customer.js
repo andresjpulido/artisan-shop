@@ -18,8 +18,6 @@ export default (sequelize, DataTypes) => {
   customer.associate = function(models) {
     
   };
-
-  console.log("invoke operation model")
  
   return customer;
 };

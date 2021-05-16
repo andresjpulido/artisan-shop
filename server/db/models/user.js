@@ -23,7 +23,7 @@ export default (sequelize, DataTypes) => {
       foreignKey: 'id_employee' 
     })
   };
- 
+   
   return User;
 };
  

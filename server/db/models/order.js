@@ -20,9 +20,7 @@ export default (sequelize, DataTypes) => {
       foreignKey: 'id_customer' 
     })
   };
-
-  console.log("invocacion del modelo order")
-
+ 
   return Order;
 };
  

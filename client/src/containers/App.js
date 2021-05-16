@@ -21,30 +21,32 @@ import Payslips from './Admin/Payslips';
 import Parameters from './Admin/Parameters'
 import ProductType from './Admin/ProductType'
 import OnePayslip from './EA/OnePayslip';
-import {connect} from 'react-redux';
-import { bindActionCreators } from 'redux'; 
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import ProductionReport from '../reports/pages/production'
+import OrdersReport from '../reports/pages/orders'
+import IndexReports from '../reports/pages/reports'; 
 
 class App extends Component {
- 
+
 
   render() {
 
     console.log(this.props.pending)
     //const session = localStorage.getItem('session');
- var _pending = this.props.pending
+    var _pending = this.props.pending
 
     return (
       <div>
 
         <BrowserRouter>
-        <div>
-          <NavBar />
+          <div>
+            <NavBar />
             <Switch>
               <Route
                 path="/"
                 exact
-                component={Login}                
+                component={Login}
               />
               <Route
                 path="/home"
@@ -60,12 +62,12 @@ class App extends Component {
                 path="/employees"
                 exact
                 component={Employees}
-              />   
+              />
               <Route
                 path="/employee"
                 exact
                 component={Employee}
-              />                                               
+              />
               <Route
                 path="/orders"
                 exact
@@ -85,12 +87,12 @@ class App extends Component {
                 path="/movement"
                 exact
                 component={Movement}
-              />    
+              />
               <Route
                 path="/movements"
                 exact
                 component={Movements}
-              />                        
+              />
               <Route
                 path="/ea"
                 exact
@@ -110,17 +112,17 @@ class App extends Component {
                 path="/parameters"
                 exact
                 component={Parameters}
-              />               
+              />
               <Route
                 path="/payslip"
                 exact
                 component={Payslip}
-              />    
+              />
               <Route
                 path="/payslips"
                 exact
                 component={Payslips}
-              />   
+              />
 
               <Route
                 path="/producttype"
@@ -132,37 +134,57 @@ class App extends Component {
                 path="/onepayslip"
                 exact
                 component={OnePayslip}
-              />                     
+              />
+
+<Route
+                path="/reports/reports"
+                exact
+                component={IndexReports}
+              />
+
+              <Route
+                path="/reports/production"
+                exact
+                component={ProductionReport}
+              />
+
+              <Route
+                path="/reports/orders"
+                exact
+                component={OrdersReport}
+              />
+
+
               <Redirect to="/" />
             </Switch>
 
             {
-            _pending   &&
-            <div className="d-flex justify-content-center">
-              <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
+              _pending &&
+              <div className="d-flex justify-content-center">
+                <div className="spinner-border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
               </div>
-            </div>
             }
-   
-        </div>
+
+          </div>
         </BrowserRouter>
         <Footer />
       </div>
     );
   }
 }
- 
+
 
 const mapStateToProps = (state) => {
   return {
-    error: state.generalReducer.error, 
-    pending: state.generalReducer.pending 
+    error: state.generalReducer.error,
+    pending: state.generalReducer.pending
   }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  
-}, dispatch) 
+
+}, dispatch)
 
 export default (connect(mapStateToProps, mapDispatchToProps))(App);

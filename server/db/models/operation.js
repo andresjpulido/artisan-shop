@@ -19,8 +19,6 @@ export default (sequelize, DataTypes) => {
        foreignKey: 'id_operationType'
      })
   };
-
-  console.log("invoke operation model")
  
   return operation;
 };

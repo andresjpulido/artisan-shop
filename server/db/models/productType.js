@@ -17,9 +17,7 @@ export default (sequelize, DataTypes) => {
   productType.associate = function(models) { 
     // associations can be defined here
   };  
-
-  console.log("invocacion del modelo ProductType")
-
+ 
   return productType;
 };
  

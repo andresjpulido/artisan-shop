@@ -19,7 +19,7 @@ class Login extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
-  handleSubmit = (e) => { 
+  handleSubmit = (e) => {
     e.preventDefault();
     const { username, password } = this.state;
     this.props.signIn(username, password)
@@ -55,7 +55,7 @@ class Login extends Component {
             <div className="card-body">
               <div className="row">
                 <div className="col-sm">
-                  <h2 className="text-primary text-center ">Sign in</h2>
+                  <h2 className="text-primary text-center ">Sign in :)</h2>
                 </div>
               </div>
               <form onSubmit={this.handleSubmit}>
