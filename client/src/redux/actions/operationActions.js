@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {GET_OPERATION_URL} from '../constants/webservices'
-import {PENDING, FINISHED, SHOW_ERRORS} from '../constants/ActionTypes'
+import {PENDING} from '../constants/ActionTypes'
 
 export const GET_OPERATION = 'GET_OPERATION';
     

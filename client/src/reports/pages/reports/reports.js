@@ -2,7 +2,8 @@ import React from 'react';
 export default function IndexReports() {
 
     return (
-        <div>
+        <div className="container">
+
             <br /><br /><br />
             <h2>Reports</h2>
             <ul>

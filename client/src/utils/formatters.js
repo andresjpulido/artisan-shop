@@ -10,3 +10,11 @@ export function dateFormatter(d){
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return date.getDate() + "/" + month + "/" + date.getFullYear() + "  " + strTime;
   }
+
+
+  export function getdate(){
+    var date = new Date()   
+    var month = (date.getMonth()+1) < 10 ? '0' + (date.getMonth()+1) : date.getMonth()+1    
+    var day = date.getDate() > 10? date.getDate() : '0' + date.getDate()
+    return date.getFullYear() + "-" + month + "-" + day;
+  }

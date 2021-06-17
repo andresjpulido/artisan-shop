@@ -1,0 +1,15 @@
+{
+    "name": "colombia",
+    "departamentos": [
+        {
+            "nombre": "cundinamarca",
+            "ciudades": [
+                {"nombre":"bogota"},
+                {"nombre":"Soacha"}
+            ]
+        },
+        {
+            "nombre": "meta"
+        }
+    ]
+}

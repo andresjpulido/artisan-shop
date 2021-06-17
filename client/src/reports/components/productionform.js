@@ -27,7 +27,7 @@ export default function ProductionForm(props) {
                 <div>
                     <button type="button" className="btn btn-primary float-left">Back</button>
 
-                    <button type="submit" className="btn btn-primary float-right" >Save</button>
+                    <button type="submit" className="btn btn-primary float-right" >Search</button>
                 </div>
             </form>
 

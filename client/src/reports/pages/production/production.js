@@ -20,7 +20,7 @@ function ProductionReport(props) {
         loadSpots();
     }, [dispatch]);
 
-    console.log(props.employees)
+    console.log(props.report)
 
     const handlesubmit = async (dataForm) => {
         console.log("handlesubmit ")

@@ -1,19 +1,18 @@
-import {SIGNIN} from "../actions/authAction" 
+import { SIGNIN } from "../actions/authAction"
 
 const initialState = {
-    user : {},
-    error : {}
+    user: {}
 }
 
 export default (state = initialState, action) => {
 
     switch (action.type) {
-      
-        case SIGNIN: { 
-            return Object.assign({}, state, {user: action.payload})
-        }  
-        
-        default:{       
+
+        case SIGNIN: {
+            return Object.assign({}, state, { user: action.payload })
+        }
+
+        default: {
             return { ...state }
         }
     }

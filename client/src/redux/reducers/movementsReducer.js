@@ -20,14 +20,12 @@ import { SHOW_ERRORS } from '../actions/errorActions';
  
 
       case SHOW_ERRORS:
-        console.log("action.error ::: ",action.error)
         return {
           ...state, 
           error: action.error
         }          
       
       case WEEKLY_REPORT:
-        console.log("action.error ::: ",action.error)
         return {
           ...state, 
           weeklyMovements: action.payload,

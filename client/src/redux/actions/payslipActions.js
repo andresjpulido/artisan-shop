@@ -1,41 +1,20 @@
-import {GET_PAYSLIPS_URL } from '../constants/webservices'
+import {PAYSLIPS_URL } from '../constants/webservices'
 import ActionUtility from './utilAction'
 
-export const FETCH_PAYSLIPS_PENDING = 'FETCH_PAYSLIPS_PENDING';
-export const FETCH_PAYSLIPS_SUCCESS = 'FETCH_PAYSLIPS_SUCCESS';
-export const FETCH_PAYSLIPS_ERROR = 'FETCH_PAYSLIPS_ERROR';
 export const GET_PAYSLIPS = 'GET_PAYSLIPS';
+export const GET_PAYSLIP = 'GET_PAYSLIP';
+export const ADD_PAYSLIP = 'ADD_PAYSLIP';
 
-function fetchPayslipsPending() {
-    return {
-        type: FETCH_PAYSLIPS_PENDING
-    }
-}
-
-function fetchPayslipsSuccess(payslips) {
-    console.log("payslips",payslips)
-    return {
-        type: FETCH_PAYSLIPS_SUCCESS, 
-        payload :{ payslips }
-    }
-}
-
-function fetchPayslipsError(error) {
-    return {
-        type: FETCH_PAYSLIPS_ERROR,
-        error: error
-    }
-}
-  
-function getPayslips(){
-
-    let url = GET_PAYSLIPS_URL;
-
+function getPayslips(queryObj){ 
     return (dispatch, getState)=>{
-        ActionUtility.invokeServiceGet(dispatch, GET_PAYSLIPS, url);
-    }
- 
+        ActionUtility.invokeServiceGet(dispatch, GET_PAYSLIPS, PAYSLIPS_URL, queryObj);
+    } 
 }
 
+function createPayslip(payslip) { 
+    return (dispatch, getState) => {
+        ActionUtility.invokeServicePost(dispatch, ADD_PAYSLIP, payslip, PAYSLIPS_URL);
+    }
+}
 
-export {fetchPayslipsSuccess, fetchPayslipsPending, fetchPayslipsError, getPayslips};
+export {getPayslips, createPayslip};

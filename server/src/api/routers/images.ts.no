@@ -1,0 +1,34 @@
+import { Router, Request, Response } from "express";
+import middlewares from "../middlewares";
+import AlbumCtrl from "../../controllers/AlbumCtrl";
+import AlbumService from "../../services/album";
+import { Container } from "typedi";
+
+const route = Router();
+console.log("entro a images");
+
+export default (app) => {
+
+    app.get("/albums", async (req, res, next) => {
+		console.log("paso por aqui");
+
+		const albumServiceInstance = Container.get(AlbumService);
+		const albumList = await albumServiceInstance.getAll();
+
+		// Devolver una respuesta al cliente.
+		return res.json(albumList);
+	});
+
+	app.get("/albums/:id", AlbumCtrl.readOne);
+	app.post("/albums", AlbumCtrl.create);
+	app.put("/albums/:id", AlbumCtrl.update);
+
+	app.delete("/albums/:id", async (req, res, next) => {
+		const id = req.params.id;
+		const albumServiceInstance = Container.get(AlbumService);
+		const albumList = await albumServiceInstance.delete(id);
+
+		// Devolver una respuesta al cliente.
+		return res.json(albumList);
+	});
+};

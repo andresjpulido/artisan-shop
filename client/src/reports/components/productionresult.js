@@ -9,7 +9,7 @@ export default function ProductionResult(props) {
     return (
         <div>
             {
-                report.weeks.map((week, index) => (
+                report.weeks && report.weeks.map((week, index) => (
                     <div key={index}>
                         <h5 className="text-sm-right">{week.period}</h5>
 
