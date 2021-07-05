@@ -6,12 +6,13 @@ import model from "../models";
 export default class customerService {
 	constructor() {}
 
-	public async getAll() {
+	public async getAll(queryObj) {
 		const { customer } = model;
 
 		try {
 			return customer.findAll(
 				{
+					where: queryObj,
 					include: [],
 					order: [
 						['id']
@@ -22,6 +23,31 @@ export default class customerService {
 			console.log(e);
 			return {};
 		}
+	}
+
+	public async getAllAutocomplete(queryObj) {
+		 
+		const { customer } = model;
+		return await customer.findAll({
+			where: {
+				
+					[Op.or]: [
+					  {
+						firstName: {
+						  [Op.iLike]: '%' + queryObj.firstName + '%'
+						}
+					  },
+					  {
+						lastName: {
+						  [Op.iLike]: '%' + queryObj.lastName + '%'
+						}
+					  }
+					]
+				
+			},
+			include: [],
+			order: [["id"]],
+		});
 	}
 
 	public async getOne(id:any) {

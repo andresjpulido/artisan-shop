@@ -60,6 +60,18 @@ export default class userService {
 		});
 	}
 
+	public async updatePassword(userObj: any) {
+		const { user } = model;
+
+		decrypted
+		
+		await user.update(userObj, {
+			where: {
+				id: userObj.id,
+			},
+		});
+	}
+
 	public async create(userObj: any) {
 		const { user } = model;
 

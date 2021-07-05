@@ -28,12 +28,13 @@ class NavBar extends Component {
 
   isAdmin = () => {
     let user = this.props.user;
-
-    if (user.username === "admin") {
-      return "dropdown"
-    } else {
-      return "dropdown d-none";
-    }
+    /*
+        if (user.username === "admin") {
+          return "dropdown"
+        } else {
+          return "dropdown d-none";
+        }
+    */
   }
 
   render() {
@@ -93,7 +94,11 @@ class NavBar extends Component {
                 </ul>
               </li>
               <li className="nav-item">
-                <Link to={`/inventory`} className="nav-link">Inventory</Link>
+                <div className="nav-link" data-toggle="dropdown">Inventory</div>
+                <ul className="dropdown-menu">
+                  <li className="text-center"><Link to={`/products`}>Products</Link></li>
+                  <li className="text-center"><Link to={`/inventory`}>Inventory</Link></li>
+                </ul>
               </li>
               <li className="dropdown">
                 <Link to={`/ea`} className="nav-link">Hours</Link>

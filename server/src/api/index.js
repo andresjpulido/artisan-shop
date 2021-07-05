@@ -18,6 +18,7 @@ import image from './routers/image';
 import payslip from './routers/payslips';
 import rol from './routers/rol';
 import resource from './routers/resource';
+import location from './routers/location';
 
 // guaranteed to get dependencies
 export default () => {
@@ -42,5 +43,7 @@ export default () => {
 	auth(app);
 	rol(app);
 	resource(app);
+	location(app);
+	
 	return app
 }

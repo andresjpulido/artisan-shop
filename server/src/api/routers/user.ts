@@ -5,6 +5,7 @@ import { Container } from "typedi";
 const auth = require("../middlewares/auth");
 const route = Router();
 import userService from "../../services/userService";
+import privatekey from "../../controllers/admin/privatekey"
 
 export default (app) => {
 	app.get("/users", async (req: Request, res: Response, next) => {
@@ -46,4 +47,19 @@ export default (app) => {
 		const list = await userInstance.update(userObj);
 		return res.json(list);
 	});
+
+	app.put("/users/:id/password", async (req: Request, res: Response, next) => {	
+		let id = req.params.id;
+		let password = req.body.password;
+		
+		const NodeRSA = require('node-rsa');
+		const key = new NodeRSA(privatekey);
+		const encrypted = password
+		const decrypted = key.decrypt(encrypted, 'utf8');
+
+		const userInstance = Container.get(userService);
+		await userInstance.updatePassword({id:id, password:decrypted});
+		return res.status(200).send({});
+	});
+
 };

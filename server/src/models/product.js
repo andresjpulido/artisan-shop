@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         description: DataTypes.STRING,
         id_size: DataTypes.INTEGER,
         id_productType: DataTypes.INTEGER,
+        id_location: DataTypes.INTEGER,
+        url: DataTypes.STRING,
+        is_online: DataTypes.BOOLEAN,
+        code: DataTypes.STRING,
         createdAt: 'TIMESTAMP',
         updatedAt: 'TIMESTAMP'
     }, {
@@ -25,7 +29,9 @@ module.exports = (sequelize, DataTypes) => {
         Product.belongsTo(models.order, {
             foreignKey: 'id_order'
         })
-
+        Product.belongsTo(models.location, {
+            foreignKey: 'id_location'
+        })
         Product.hasMany(models.image, { 
             foreignKey: 'id_product' , as: 'images'
         })

@@ -20,6 +20,9 @@ import imageReducer from './reducers/imageReducer'
 import userReducer from './reducers/userReducer'
 import rolReducer from './reducers/rolReducer'
 import resourceReducer from './reducers/resourceReducer'
+import productReducer from './reducers/productReducer'
+import locationReducer from './reducers/locationReducer'
+
 
 const rootReducer = combineReducers({
     employeeReducer, 
@@ -41,7 +44,9 @@ const rootReducer = combineReducers({
     imageReducer,
     userReducer,
     rolReducer,
-    resourceReducer
+    resourceReducer,
+    productReducer,
+    locationReducer
 })
 
 const store = createStore(

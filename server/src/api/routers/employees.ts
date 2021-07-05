@@ -5,7 +5,6 @@ import employeeService from '../../services/employeeService';
 import { Container } from "typedi";
 const auth = require('../middlewares/auth')
 const route = Router();
-console.log("entro a images");
 
 export default (app) => {
 
@@ -20,7 +19,11 @@ export default (app) => {
     app.get('/employees', async (req, res, next) => {
         const queryObj = req.query
         const serviceInstance = Container.get(employeeService);
-		const list = await serviceInstance.getAll(queryObj);
+        let list =[];
+        if(queryObj.autocomplete === "true")
+            list = await serviceInstance.getAllAutocomplete(queryObj);
+		else
+            list = await serviceInstance.getAll(queryObj);
  		return res.json(list);
     })
     app.get('/employees/:id', async (req, res, next) => {

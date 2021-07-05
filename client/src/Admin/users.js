@@ -11,7 +11,7 @@ export default function Users(props) {
 
     const dispatch = useDispatch();
     const users = useSelector(state => state.userReducer.users)
-    const [numberRows, setNumberRows] = useState(0)
+    const [numberRows] = useState(0)
     const table = useRef(null);
     let history = useHistory()
 

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { dateFormatter } from '../utils/formatters';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import { getCustomers } from '../redux/actions/customerActions'
+import { readAllCustomer } from '../redux/actions/customerActions'
 import { ALERT } from '../redux/constants/ActionTypes';
 
 export default function Customers(props) {
@@ -39,7 +39,7 @@ export default function Customers(props) {
         }]
 
     useEffect(() => {
-        dispatch(getCustomers())
+        dispatch(readAllCustomer())
         dispatch({ type: ALERT, payload: null })
 
     }, [])

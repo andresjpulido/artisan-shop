@@ -14,7 +14,6 @@ import Movement from './inventory/movement';
 import Movements from './inventory/movements';
 import ExtraHours from './hour/ExtraHours';
 import NewEA from './hour/NewEA';
-import Admin from './Admin/Admin';
 import Employees from './Admin/Employees';
 import Employee from './Admin/Employee';
 import Payslip from './Admin/Payslip';
@@ -34,6 +33,8 @@ import Rol from './Admin/rol';
 import Resources from './Admin/resources'; 
 import { useSelector } from 'react-redux';
 import Password from './Admin/password';
+import Products from './inventory/products';
+import Product from './inventory/product';
 
 export default function App() {
 
@@ -92,6 +93,10 @@ export default function App() {
         <Route path="/payslip" exact component={Payslip} />
         <Route path="/payslips" exact component={Payslips} />
         <Route path="/onepayslip" exact component={OnePayslip} />
+
+        <Route path="/product" exact component={Product} />
+        <Route path="/product/:id" exact component={Product} />
+        <Route path="/products" exact component={Products} />
 
         <Route path="/producttypes" exact component={ProductTypes} />
         <Route path="/producttype" exact component={ProductType} />

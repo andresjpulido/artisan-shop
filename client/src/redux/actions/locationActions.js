@@ -1,51 +1,35 @@
-import { EMPLOYEES_URL } from '../constants/webservices';
+import { LOCATIONS_URL } from '../constants/webservices';
 import { PENDING, FINISHED, ALERT } from '../constants/ActionTypes';
 import axios from 'axios';
 import ActionUtility from './utilAction';
 
-export const ADD_EMPLOYEE = 'ADD_EMPLOYEE';
-export const GET_EMPLOYEE = 'GET_EMPLOYEE';
-export const GET_EMPLOYEES = 'GET_EMPLOYEES';
-export const UPD_EMPLOYEE = 'UPD_EMPLOYEE';
-export const NEW_EMPLOYEE = 'NEW_EMPLOYEE';
- 
-function readAllEmployee(queryObj) {
-    
+export const GET_LOCATIONS = 'GET_LOCATIONS';
+export const NEW_LOCATION = 'NEW_LOCATION';
+export const GET_LOCATION = 'GET_LOCATION';
+export const UPD_LOCATION = 'UPD_LOCATION';
+export const ADD_LOCATION = 'ADD_LOCATION';
+
+function readAllLocations(queryObj) {    
     return (dispatch, getState) => {
-        ActionUtility.invokeServiceGet(dispatch, GET_EMPLOYEES, EMPLOYEES_URL, queryObj);
+        ActionUtility.invokeServiceGet(dispatch, GET_LOCATIONS, LOCATIONS_URL, queryObj);
     }
 }
 
-function readOneEmployee(id) {
-    let url = EMPLOYEES_URL + "/" + id
+function readOneLocation(id) {
+    let url = LOCATIONS_URL + "/" + id
     return (dispatch, getState) => {
-        ActionUtility.invokeServiceGet(dispatch, GET_EMPLOYEE, url);
+        ActionUtility.invokeServiceGet(dispatch, GET_LOCATION, url);
     }
 }
 
-function createEmployee(emp) {
-
-    let empObj = {
-        firstName: emp.firstName,
-        lastName: emp.lastName,
-        movil: emp.movil,
-        address: emp.address,
-        typeDocument: emp.typeDocument,
-        document: emp.document,
-        birthDate: emp.birthDate,
-        ird: emp.ird,
-        email: emp.email,
-        position: emp.position,
-        bankName: emp.bankName,
-        accountNumber: emp.accountNumber
-    }
+function createLocation(location) {
 
     return (dispatch, getState) => {
-        ActionUtility.invokeServicePost(dispatch, ADD_EMPLOYEE, empObj, EMPLOYEES_URL);
+        ActionUtility.invokeServicePost(dispatch, ADD_LOCATION, location, LOCATIONS_URL);
     }
 }
 
-function deleteEmployee(ids) {
+function deleteLocation(ids) {
 
     return (dispatch, getState) => {
 
@@ -56,7 +40,7 @@ function deleteEmployee(ids) {
         const productTypesObj = {
             ids: ids
         }
-        axios.delete(EMPLOYEES_URL, {
+        axios.delete(LOCATIONS_URL, {
             headers: {
                 'Authorization': 'Bearer ' + token,
                 'content-type': 'application/json'
@@ -71,7 +55,7 @@ function deleteEmployee(ids) {
                         description: "Your request has been successfully processed."
                     }
                 })
-                dispatch(readAllEmployee());
+                dispatch(readAllLocations());
             })
 
             .catch(function (error) {
@@ -128,11 +112,11 @@ function deleteEmployee(ids) {
     }
 }
 
-function updateEmployee(employee) {
+function updateLocation(location) {
     return (dispatch, getState) => {
-        ActionUtility.invokeServicePUT(dispatch, UPD_EMPLOYEE, employee, EMPLOYEES_URL);
+        ActionUtility.invokeServicePUT(dispatch, UPD_LOCATION, location, LOCATIONS_URL);
     }
 }
 
-export { readAllEmployee, createEmployee, readOneEmployee, deleteEmployee, updateEmployee };
+export { readAllLocations, createLocation, readOneLocation, deleteLocation, updateLocation };
 

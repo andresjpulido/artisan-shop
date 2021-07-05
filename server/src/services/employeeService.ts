@@ -1,5 +1,6 @@
 import { Service, Inject } from "typedi";
 import model from "../models";
+const { Op } = require("sequelize");
 
 @Service()
 export default class employeeService {
@@ -13,6 +14,31 @@ export default class employeeService {
 		const { employee } = model;
 		return await employee.findAll({
 			where: queryObj,
+			include: [],
+			order: [["id"]],
+		});
+	}
+
+	public async getAllAutocomplete(queryObj) {
+		console.log("queryObj", queryObj);
+		const { employee } = model;
+		return await employee.findAll({
+			where: {
+				
+					[Op.or]: [
+					  {
+						firstName: {
+						  [Op.iLike]: '%' + queryObj.firstName + '%'
+						}
+					  },
+					  {
+						lastName: {
+						  [Op.iLike]: '%' + queryObj.lastName + '%'
+						}
+					  }
+					]
+				
+			},
 			include: [],
 			order: [["id"]],
 		});

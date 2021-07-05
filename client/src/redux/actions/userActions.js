@@ -8,6 +8,7 @@ export const DELETE_USER = 'DELETE_USER';
 export const GET_USER = 'GET_USER';
 export const NEW_USER = 'NEW_USER';
 export const UPD_USER = 'UPD_USER';
+export const UPDATE_PWD = 'UPDATE_PWD';
 
 function getUsers(){
     let url = USER_URL;
@@ -44,4 +45,11 @@ function deleteUser(id){
     } 
 } 
 
-export { getUsers, getUser, createUser, updateUser, deleteUser };
+function updatePassword(requestObj){
+    let url = USER_URL+"/"+requestObj.id+"/password";    
+    return (dispatch, getState)=>{
+        ActionUtility.invokeServicePUT(dispatch, UPDATE_PWD, requestObj, url);
+    }
+}
+
+export { getUsers, getUser, createUser, updateUser, deleteUser, updatePassword };

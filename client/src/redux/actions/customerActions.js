@@ -8,12 +8,12 @@ export const DELETE_CUSTOMER = 'DELETE_CUSTOMER';
 export const GET_CUSTOMER = 'GET_CUSTOMER';
 export const NEW_CUSTOMER = 'NEW_CUSTOMER';
 
-function getCustomers(){
+function readAllCustomer(queryObj){
 
     let url = CUSTOMERS_URL;
 
     return (dispatch, getState)=>{
-        ActionUtility.invokeServiceGet(dispatch, GET_CUSTOMERS, url);
+        ActionUtility.invokeServiceGet(dispatch, GET_CUSTOMERS, url, queryObj);
     }
  
 }   
@@ -45,4 +45,4 @@ function updateCustomer(requestObj){
     }
 }
 
-export { getCustomers, getCustomer, createCustomer, updateCustomer };
+export { readAllCustomer, getCustomer, createCustomer, updateCustomer };

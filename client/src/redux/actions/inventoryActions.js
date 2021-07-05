@@ -5,12 +5,12 @@ export const GET_INVENTORY = 'GET_INVENTORY';
 export const GET_MOVEMENT = 'GET_MOVEMENT';
 export const CREATE_MOV = 'CREATE_MOV'; 
    
-function getAll(){
+function getAll(queryObj){
 
     let url = GET_INV_URL
 
     return (dispatch, getState)=>{
-        ActionUtility.invokeServiceGet(dispatch, GET_INVENTORY, url);
+        ActionUtility.invokeServiceGet(dispatch, GET_INVENTORY, url, queryObj);
     }
  
 }

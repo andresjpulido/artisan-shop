@@ -1,15 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { createOrder, getOrder, UPD_ORDER } from '../redux/actions/orderActions'
+import { readAllCustomer } from '../redux/actions/customerActions'
+import { readAllEmployee } from '../redux/actions/employeeActions'
 import { useHistory } from "react-router-dom";
 import { ALERT } from '../redux/constants/ActionTypes';
+import AutoComplete from '../components/AutoComplete'
 
 export default function Order(props) {
 
   const { id } = useParams();
 
   const order = useSelector(state => state.orderReducer.order)
+  const employees = useSelector(state => state.employeeReducer.employees)
+  const customers = useSelector(state => state.customerReducer.customers)
+  const [form, setForm] = useState({ username: "", keyword: "" })
+
   let history = useHistory()
   const dispatch = useDispatch();
 
@@ -24,7 +31,7 @@ export default function Order(props) {
     await dispatch(createOrder(order));
   }
 
-  const handleNewCustomer = (ev) =>{
+  const handleNewCustomer = (ev) => {
     ev.preventDefault();
     history.push("/customer")
   }
@@ -82,10 +89,26 @@ export default function Order(props) {
       dispatch({ type: UPD_ORDER, payload: { ...order, products: products } })
 
     })
-
-
-
   }
+
+  const updateField = (fieldText, valueText, fieldId, valueId, update = true) => {
+    if (update) {
+      let queryObj = {
+        firstName: valueText,
+        lastName: valueText, 
+        autocomplete:true
+      }
+      dispatch(readAllCustomer(queryObj));      
+      
+    } else{
+      console.log("actualizando id_customer" ,valueId )
+      dispatch({ type: UPD_ORDER, payload: { ...order, id_customer: valueId } })
+  
+    }
+    setForm(form => ({ ...form, [fieldText]: valueText }));
+    setForm(form => ({ ...form, [fieldId]: valueId }));
+  };
+
 
   return (
     <div className="container">
@@ -94,40 +117,23 @@ export default function Order(props) {
       <h4>New Order</h4>
 
       <form onSubmit={handlesubmit}>
-        <p>
-          <a className="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Customer
-          </a>
-
-        </p>
-        <div className="collapse" id="collapseExample">
-          <div className="card card-body" >
-
-            <div className="form-group">
-              <label htmlFor="nameInput">Name</label>
-              <input type="text" className="form-control" id="nameInput" placeholder="Name" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email address</label>
-              <input type="email" className="form-control" id="email" placeholder="name@domain.com" onChange={handleChange} />
-            </div>
-
-          </div>
-        </div>
 
         <h5>Customer</h5>
         <div className="card card-body">
           <div className="form-group">
-            <label htmlFor="nameInput">Name</label>
-            <input type="text" className="form-control" id="nameInput" placeholder="Name" />
+            <label htmlFor="nameInput">Name</label>           
+            <AutoComplete
+              results={customers}
+              keyword={form.keyword}
+              updateField={updateField}
+            />
           </div>
           <div className="form-group">
-          <button id="b1" className="btn btn-link float-right" type="button" onClick={handleNewCustomer}>Create new</button>
+            <button id="b1" className="btn btn-link float-right" type="button" onClick={handleNewCustomer}>Create new</button>
           </div>
         </div>
 
         <h5>Products</h5>
-
         {
           order &&
           order.products &&
@@ -198,9 +204,8 @@ export default function Order(props) {
 
       </form>
 
-
-
+ 
     </div >
   );
 
-}
+} 

@@ -1,51 +1,34 @@
-import { EMPLOYEES_URL } from '../constants/webservices';
+import { PRODUCTS_URL } from '../constants/webservices';
 import { PENDING, FINISHED, ALERT } from '../constants/ActionTypes';
 import axios from 'axios';
 import ActionUtility from './utilAction';
 
-export const ADD_EMPLOYEE = 'ADD_EMPLOYEE';
-export const GET_EMPLOYEE = 'GET_EMPLOYEE';
-export const GET_EMPLOYEES = 'GET_EMPLOYEES';
-export const UPD_EMPLOYEE = 'UPD_EMPLOYEE';
-export const NEW_EMPLOYEE = 'NEW_EMPLOYEE';
+export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const GET_PRODUCT = 'GET_PRODUCT';
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const UPD_PRODUCT = 'UPD_PRODUCT';
+export const NEW_PRODUCT = 'NEW_PRODUCT';
  
-function readAllEmployee(queryObj) {
-    
+function readAllProduct(queryObj) {    
     return (dispatch, getState) => {
-        ActionUtility.invokeServiceGet(dispatch, GET_EMPLOYEES, EMPLOYEES_URL, queryObj);
+        ActionUtility.invokeServiceGet(dispatch, GET_PRODUCTS, PRODUCTS_URL, queryObj);
     }
 }
 
-function readOneEmployee(id) {
-    let url = EMPLOYEES_URL + "/" + id
+function readOneProduct(id) {
+    let url = PRODUCTS_URL + "/" + id
     return (dispatch, getState) => {
-        ActionUtility.invokeServiceGet(dispatch, GET_EMPLOYEE, url);
+        ActionUtility.invokeServiceGet(dispatch, GET_PRODUCT, url);
     }
 }
 
-function createEmployee(emp) {
-
-    let empObj = {
-        firstName: emp.firstName,
-        lastName: emp.lastName,
-        movil: emp.movil,
-        address: emp.address,
-        typeDocument: emp.typeDocument,
-        document: emp.document,
-        birthDate: emp.birthDate,
-        ird: emp.ird,
-        email: emp.email,
-        position: emp.position,
-        bankName: emp.bankName,
-        accountNumber: emp.accountNumber
-    }
-
+function createProduct(productObj) {
     return (dispatch, getState) => {
-        ActionUtility.invokeServicePost(dispatch, ADD_EMPLOYEE, empObj, EMPLOYEES_URL);
+        ActionUtility.invokeServicePost(dispatch, ADD_PRODUCT, productObj, PRODUCTS_URL);
     }
 }
 
-function deleteEmployee(ids) {
+function deleteProduct(ids) {
 
     return (dispatch, getState) => {
 
@@ -53,15 +36,15 @@ function deleteEmployee(ids) {
 
         dispatch({ type: PENDING, payload: null })
 
-        const productTypesObj = {
+        const productObj = {
             ids: ids
         }
-        axios.delete(EMPLOYEES_URL, {
+        axios.delete(PRODUCTS_URL, {
             headers: {
                 'Authorization': 'Bearer ' + token,
                 'content-type': 'application/json'
             },
-            data: productTypesObj
+            data: productObj
         })
 
             .then((response) => {
@@ -71,7 +54,7 @@ function deleteEmployee(ids) {
                         description: "Your request has been successfully processed."
                     }
                 })
-                dispatch(readAllEmployee());
+                dispatch(readAllProduct());
             })
 
             .catch(function (error) {
@@ -128,11 +111,11 @@ function deleteEmployee(ids) {
     }
 }
 
-function updateEmployee(employee) {
+function updateProduct(productObj) {
     return (dispatch, getState) => {
-        ActionUtility.invokeServicePUT(dispatch, UPD_EMPLOYEE, employee, EMPLOYEES_URL);
+        ActionUtility.invokeServicePUT(dispatch, UPD_PRODUCT, productObj, PRODUCTS_URL);
     }
 }
 
-export { readAllEmployee, createEmployee, readOneEmployee, deleteEmployee, updateEmployee };
+export { readAllProduct, createProduct, readOneProduct, deleteProduct, updateProduct };
 

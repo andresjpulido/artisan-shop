@@ -1,77 +1,83 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
-import {connect} from 'react-redux';
-import { bindActionCreators } from 'redux';
-import {getAll} from '../redux/actions/inventoryActions'
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAll } from '../redux/actions/inventoryActions'
+import { useHistory } from "react-router-dom";
+import InventoryFilter from './components/inventoryfilter';
 
-class Inventory extends Component {
 
-  state = {
-    amount: 0,
-    type: "Toki",
-    size: "Small",
-    inventory: [],
-    columns: [{
-      dataField: 'amount',
-      text: 'Amount'
-    },
-    {
-      dataField: 'productType.name',
-      text: 'Product',
-      sort: true
-    },
-    {
-      dataField: 'size.name',
-      text: 'Size',
-      sort: true
-    }] 
+export default function Inventory() {
+
+  const inventory = useSelector(state => state.inventoryReducer.inventory)
+
+  const [numberRows, setNumberRows] = useState(0)
+
+  const dispatch = useDispatch();
+  let history = useHistory()
+
+  useEffect(() => {
+    dispatch(getAll())
+  }, [])
+
+  const columns = [{
+    dataField: 'amount',
+    text: 'Amount'
+  },
+  {
+    dataField: 'product',
+    text: 'Product',
+    sort: true
+  }
+    ,
+  {
+    dataField: 'size',
+    text: 'Size',
+    sort: true
+  },
+  {
+    dataField: 'location',
+    text: 'Location',
+    sort: true
+  }]
+
+  const handleSubmit = async (dataForm) => {
+
+    let queryObj = {}
+    if (dataForm.id_productType !== "0")
+      queryObj.id_productType = dataForm.id_productType
+    if (dataForm.id_location !== "0")
+      queryObj.location = dataForm.id_location
+    if (dataForm.id_size !== "0")
+      queryObj.id_size = dataForm.id_size
+
+    dispatch(getAll(queryObj))
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.history.push('/movement')
-  }
-   
-  componentWillMount() {     
-    this.props.getAll();
-    console.log(this.state.inventory)
-  }
 
-  render() {
-    return (
+  return (
 
-      <div className="container">
+    <div className="container">
 
-        <br /><br /><br />
-        <h4>Inventory</h4>
+      <br /><br /><br />
+      <h4>Inventory</h4>
 
-        <BootstrapTable
-          striped
-          hover
-          keyField='id'
-          data={this.props.inventory}
-          columns={this.state.columns} />
+      <InventoryFilter action={handleSubmit} />
 
-        <button id="move" className="btn btn-secondary" type="button" onClick={this.handleSubmit}>Move</button>
+      <BootstrapTable
+        striped
+        hover
+        keyField='id'
+        data={inventory}
+        columns={columns}
+        pagination={paginationFactory()}
+      />
 
-      </div>
+      <button id="move" className="btn btn-secondary" type="button" onClick={handleSubmit}>Move</button>
+
+    </div>
 
 
-    );
-  }
+  );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    error: state.generalReducer.error,
-    pending: state.generalReducer.pending,
-    inventory: state.inventoryReducer.inventory 
-  }
-}
- 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  getAll: getAll
-}, dispatch)  
-
-export default (connect(mapStateToProps, mapDispatchToProps))(Inventory);
- 

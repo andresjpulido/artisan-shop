@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   const Size = sequelize.define('size', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: DataTypes.STRING, 
+    code: DataTypes.STRING, 
     createdAt: 'TIMESTAMP',
     updatedAt: 'TIMESTAMP'    
   }, {

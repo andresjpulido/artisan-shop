@@ -10,7 +10,7 @@ class ProductType {
     return productType.findAll(
       {
         order: [
-          ['id']
+          ['name']
         ]
       },
     ).then(productType => res.status(200).send(productType));
