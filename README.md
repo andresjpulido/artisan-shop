@@ -1,6 +1,10 @@
 # Shop
 
-
+<img
+  src="../docs/Deployment_Diagram.png"
+  alt="Alt text"
+  title="Optional title"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
