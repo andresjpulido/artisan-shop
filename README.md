@@ -1,7 +1,7 @@
 # Shop
 
 <img
-  src="../docs/Deployment_Diagram.png"
+  src="https://github.com/andresjpulido/shop/blob/master/docs/Deployment_Diagram.png"
   alt="Alt text"
   title="Optional title"
   style="display: inline-block; margin: 0 auto; max-width: 300px">
