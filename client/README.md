@@ -1,5 +1,9 @@
 # SHOP ( Front-End )
 
+[![GitHub stars](https://img.shields.io/github/stars/andresjpulido/shop)](https://github.com/andresjpulido/shop/stargazers)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/andresjpulido/shop)
+[![GitHub license](https://img.shields.io/github/license/andresjpulido/shop)](https://github.com/andresjpulido/shop/blob/main/LICENSE)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
