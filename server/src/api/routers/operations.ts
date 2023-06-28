@@ -1,12 +1,11 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 import middlewares from "../middlewares";
-import OperationCtrl from '../../controllers/operationCtrl'
+import OperationCtrl from '../controllers/operationCtrl'
 import { Container } from "typedi";
 const auth = require('../middlewares/auth')
-const route = Router();
-console.log("entro a images");
+const route = Router(); 
 
-export default (app) => {
+export default (app:Router) => {
 
     app.get('/operations', OperationCtrl.findAll)
 

@@ -1,13 +1,7 @@
-import { Router, Request, Response } from "express";
-import middlewares from "../middlewares";
-import SizeCtrl from '../../controllers/sizeCtrl';
-import { Container } from "typedi";
-const auth = require('../middlewares/auth')
-const route = Router();
-console.log("entro a images");
+"use strict";
+import { Router } from "express";
+import SizeCtrl from "../controllers/sizeCtrl";
 
-export default (app) => {
-
-    app.get('/sizes', SizeCtrl.findAll)
-
+export default (app: Router) => {
+  app.get("/sizes", SizeCtrl.get);
 };

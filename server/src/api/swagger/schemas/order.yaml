@@ -1,0 +1,11 @@
+name: order
+type: object
+required:
+  - code
+  - message
+properties:
+  errorCode:
+    type: integer
+    format: int32
+  message:
+    type: string

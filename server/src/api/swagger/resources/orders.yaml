@@ -1,0 +1,94 @@
+get:
+  summary: List all orders
+  operationId: orders
+  description: List or orders
+  tags:
+  - orders
+  parameters:
+    - $ref: "../parameters/query/limit.yaml"
+  responses:
+    '200':
+      description: A paged array of orders
+      headers:
+        x-next:
+          description: A link to the next page of responses
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/order.yaml"
+    '400':
+      description: Bad request. User ID must be an integer and larger than 0.
+    '401':
+      description: Authorization information is missing or invalid.
+    '404':
+      description: A user with the specified ID was not found.
+    '5XX':
+      description: Unexpected error.
+    default:
+        $ref : "../responses/error.yaml"
+
+post:
+  summary: Create an order
+  operationId: order
+  description: Create an order
+  tags:
+  - orders
+  parameters:
+    - $ref: "../schemas/order.yaml"
+  responses:
+    '200':
+      description: OK
+    '400':
+      description: Bad request. User ID must be an integer and larger than 0.
+    '401':
+      description: Authorization information is missing or invalid.
+    '404':
+      description: A user with the specified ID was not found.
+    '5XX':
+      description: Unexpected error.
+    default:
+        $ref : "../responses/error.yaml"
+
+put:
+  summary: Update
+  operationId: updateOrder
+  description: Update an Order
+  tags:
+  - groups
+  responses:
+    '200':
+      description: OK
+    '400':
+      description: Bad request. User ID must be an integer and larger than 0.
+    '401':
+      description: Authorization information is missing or invalid.
+    '404':
+      description: A user with the specified ID was not found.
+    '5XX':
+      description: Unexpected error.
+    default:
+        $ref : "../responses/error.yaml"
+
+delete:
+  summary: Delete an order
+  operationId: deleteOrder
+  description: Delete an order
+  parameters:
+    - $ref: "../parameters/query/id.yaml"
+  tags:
+  - groups
+  responses:
+    '200':
+      description: OK
+    '400':
+      description: Bad request. User ID must be an integer and larger than 0.
+    '401':
+      description: Authorization information is missing or invalid.
+    '404':
+      description: A user with the specified ID was not found.
+    '5XX':
+      description: Unexpected error.
+    default:
+        $ref : "../responses/error.yaml"

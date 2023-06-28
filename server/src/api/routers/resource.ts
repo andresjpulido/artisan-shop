@@ -1,11 +1,9 @@
-import { Router, Request, Response } from "express";
-import middlewares from "../middlewares";
+import { Router } from "express"; 
 import { Container } from "typedi";
-const auth = require("../middlewares/auth");
-const route = Router();
+import auth from "../middlewares/auth";
 import resourceService from "../../services/resourceService";
 
-export default (app) => {
+export default (app:Router) => {
 
 	app.get("/resources", async (req: Request, res: Response, next) => {
 		let query = req.query;

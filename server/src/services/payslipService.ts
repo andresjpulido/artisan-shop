@@ -3,82 +3,60 @@ import model from "../models";
 
 @Service()
 export default class payslipService {
-	public async getAll(queryObj) {
-		const { payslip } = model;
+  public async get(queryObj) {
+    const { payslip } = model;
 
-		try {
-			return payslip.findAll({
-				where: queryObj,
-				include: [],
-				order: [["id"]],
-			});
-		} catch (e) {
-			console.log(e);
-			return {};
-		}
-	}
+    return payslip.findAll({
+      where: queryObj,
+      include: [],
+      order: [["id"]],
+    });
+  }
 
-	static getAllHoursByEmployeeId(req, res) {
-		const { payslip } = model;
+  public async getAllHoursByEmployeeId(id: Number) {
+    const { payslip } = model;
 
-		return payslip.findAll({
-			where: {
-				employeeid: req.params.userid,
-			},
-		});
-	}
+    return payslip.findAll({
+      where: {
+        employeeid: id,
+      },
+    });
+  }
 
-	public async getOne(id: any) {
-		const { payslip, employee } = model;
+  public async getById(id: Number) {
+    const { payslip, employee } = model;
 
-		try {
-			return payslip.findOne({
-				where: {
-					id: id,
-				},
-				include: [employee],
-				order: [["id"]],
-			});
-		} catch (e) {
-			console.log(e);
-			return {};
-		}
-	}
+    return payslip.findOne({
+      where: {
+        id: id,
+      },
+      include: [employee],
+      order: [["id"]],
+    });
+  }
 
-	public async delete(id: any) {
-		const { payslip } = model;
+  public async delete(id: any) {
+    const { payslip } = model;
 
-		try {
-			const cus = await payslip.findOne({ where: { id: id } });
-			await cus.destroy();
-		} catch (e) {
-			console.log(e);
-			return {};
-		}
-	}
+    const cus = await payslip.findOne({ where: { id: id } });
+    await cus.destroy();
+  }
 
-	public async update(customerObj: any) {
-		const { payslip } = model;
-		console.log(customerObj);
-		await payslip.update(customerObj, {
-			where: {
-				id: customerObj.id,
-			},
-		});
-	}
+  public async update(customerObj: any) {
+    const { payslip } = model;
 
-	public async create(customerObj: any) {
-		const { payslip } = model;
+    return await payslip.update(customerObj, {
+      where: {
+        id: customerObj.id,
+      },
+    });
+  }
 
-		console.log(customerObj);
+  public async create(customerObj: any) {
+    const { payslip } = model;
 
-		try {
-			return payslip.create(customerObj, {
-				include: [],
-			});
-		} catch (e) {
-			console.log(e);
-			return {};
-		}
-	}
+    return payslip.create(customerObj, {
+      include: [],
+    });
+  }
 }

@@ -2,21 +2,21 @@
 
 const express = require('express')
 
-const utilCtrl = require('../controllers/util')
-import EmployeesCtrl from '../controllers/employeeCtrl'
-import PayslipsCtrl from '../controllers/payslipCtrl'
-import PayslipsPDFCtrl from '../controllers/payslipPDFCtrl'
-import HoursCtrl from '../controllers/hourCtrl'
-import UserCtrl from '../controllers/admin/userCtrl'
-import InventoryCtrl from '../controllers/inventoryCtrl'
-import SizeCtrl from '../controllers/sizeCtrl'
-import ParameterCtrl from '../controllers/parameterCtrl'
-import ProductTypeCtrl from '../controllers/ProductTypeCtrl'
-import MovementCtrl from '../controllers/movementCtrl'
-import OperationCtrl from '../controllers/operationCtrl'
-import StatusCtrl from '../controllers/statusCtrl'
-import OrderCtrl from '../controllers/orderCtrl'
-import ReportCtrl from '../controllers/reportCtrl'
+const utilCtrl = require('../api/controllers/util')
+import EmployeesCtrl from '../api/controllers/employeeCtrl'
+import PayslipsCtrl from '../api/controllers/payslipCtrl'
+import PayslipsPDFCtrl from '../api/controllers/payslipPDFCtrl'
+import HoursCtrl from '../api/controllers/hourCtrl'
+import UserCtrl from '../api/controllers/admin/userCtrl'
+import InventoryCtrl from '../api/controllers/inventoryCtrl'
+import SizeCtrl from '../api/controllers/sizeCtrl'
+import ParameterCtrl from '../api/controllers/parameterCtrl'
+import ProductTypeCtrl from '../api/controllers/ProductTypeCtrl'
+import MovementCtrl from '../api/controllers/movementCtrl'
+import OperationCtrl from '../api/controllers/operationCtrl'
+import StatusCtrl from '../api/controllers/statusCtrl'
+import OrderCtrl from '../api/controllers/orderCtrl'
+import ReportCtrl from '../api/controllers/reportCtrl'
 import { url } from 'inspector';
 
 const auth = require('../middlewares/auth')

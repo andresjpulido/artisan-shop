@@ -1,10 +1,47 @@
 # SHOP ( Back-End )
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was developed with nodeJS.
 
-## Available Scripts
+### `Available Scripts`
 
 In the project directory, you can run:
+
+#### `clean`
+    npm run-script clean
+
+#### `build`
+    npm run-script build
+
+#### `start`
+    npm run-script start
+
+#### `inspect`
+    npm run-script inspect
+
+#### `test`
+    npm run-script test
+
+#### `lint`
+    npm run-script lint
+
+### `lint:eslint`s
+    npm run-script lint:eslint
+
+### `lint:js`
+    npm run-script lint:js
+
+### `lint:fix`
+    npm run-script lint:fix
+
+### `npm run-script doc:generate`
+    npm run-script doc:generate
+
+
+
+
+
+
+
 
 ### `yarn start`
 

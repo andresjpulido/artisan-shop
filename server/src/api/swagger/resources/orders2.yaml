@@ -1,0 +1,11 @@
+get:
+  tags:
+  - orders
+  parameters:
+    - in: path
+      name: id   # Note the name is the same as in the path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+      description: The user ID

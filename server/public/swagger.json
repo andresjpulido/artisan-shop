@@ -1,0 +1,242 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "SHOP API",
+    "description": "API of Events App, a social media platform for hosting and organizing in-person and virtual activities, gatherings, and events for people and communities of similar interests, hobbies, and professions. It.",
+    "license": {
+      "name": "MIT"
+    },
+    "contact": {
+      "name": "API Creator",
+      "url": "http://www.andresjpulido.com/",
+      "email": "andresjpulido@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://shop.swagger.io/v1"
+    },
+    {
+      "url": "http://localhost/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "users"
+    }
+  ],
+  "paths": {
+    "/orders": {
+      "get": {
+        "summary": "List all orders",
+        "operationId": "orders",
+        "description": "List or orders",
+        "tags": [
+          "orders"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paged array of orders",
+            "headers": {
+              "x-next": {
+                "description": "A link to the next page of responses",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1orders/post/parameters/0"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. User ID must be an integer and larger than 0."
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid."
+          },
+          "404": {
+            "description": "A user with the specified ID was not found."
+          },
+          "5XX": {
+            "description": "Unexpected error."
+          },
+          "default": {
+            "description": "error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "errorCode": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create an order",
+        "operationId": "order",
+        "description": "Create an order",
+        "tags": [
+          "orders"
+        ],
+        "parameters": [
+          {
+            "name": "order",
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "errorCode": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request. User ID must be an integer and larger than 0."
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid."
+          },
+          "404": {
+            "description": "A user with the specified ID was not found."
+          },
+          "5XX": {
+            "description": "Unexpected error."
+          },
+          "default": {
+            "$ref": "#/paths/~1orders/get/responses/default"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update",
+        "operationId": "updateOrder",
+        "description": "Update an Order",
+        "tags": [
+          "groups"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request. User ID must be an integer and larger than 0."
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid."
+          },
+          "404": {
+            "description": "A user with the specified ID was not found."
+          },
+          "5XX": {
+            "description": "Unexpected error."
+          },
+          "default": {
+            "$ref": "#/paths/~1orders/get/responses/default"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an order",
+        "operationId": "deleteOrder",
+        "description": "Delete an order",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Item id",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "tags": [
+          "groups"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request. User ID must be an integer and larger than 0."
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid."
+          },
+          "404": {
+            "description": "A user with the specified ID was not found."
+          },
+          "5XX": {
+            "description": "Unexpected error."
+          },
+          "default": {
+            "$ref": "#/paths/~1orders/get/responses/default"
+          }
+        }
+      }
+    },
+    "/orders/{id}": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "The user ID"
+          }
+        ]
+      }
+    }
+  }
+}

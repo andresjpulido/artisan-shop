@@ -1,12 +1,9 @@
-import { Router, Request, Response } from "express";
-import middlewares from "../middlewares";
-import ProductTypeCtrl from '../../controllers/ProductTypeCtrl';
+import { Router } from "express"; 
+import ProductTypeCtrl from '../controllers/ProductTypeCtrl';
 import { Container } from "typedi";
-const auth = require('../middlewares/auth')
-const route = Router();
-console.log("entro a images");
+import auth from "../middlewares/auth";
 
-export default (app) => {
+export default (app:Router) => {
 
     app.get('/productTypes', ProductTypeCtrl.findAll)
     app.get('/productTypes/:id', ProductTypeCtrl.findOne)

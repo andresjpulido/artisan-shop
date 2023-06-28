@@ -4,72 +4,52 @@ import model from "../models";
 
 @Service()
 export default class rolService {
-	constructor() {}
+  constructor() {}
 
-	public async getAll(queryObj) {
-		const { rol } = model;
+  public async getAll(queryObj) {
+    const { rol } = model;
 
-		try {
-			return rol.findAll({
-                where: queryObj,
-				include: [],
-				order: [["id"]],
-			});
-		} catch (e) {
-			console.log(e);
-			return {};
-		}
-	}
+    return rol.findAll({
+      where: queryObj,
+      include: [],
+      order: [["id"]],
+    });
+  }
 
-	public async getOne(id: any) {
-		const { rol } = model;
+  public async getOne(id: any) {
+    const { rol } = model;
 
-		try {
-			return rol.findOne({
-				where: {
-					id: id,
-				},
-				include: [],
-				order: [["id"]],
-			});
-		} catch (e) {
-			console.log(e);
-			return {};
-		}
-	}
+    return rol.findOne({
+      where: {
+        id: id,
+      },
+      include: [],
+      order: [["id"]],
+    });
+  }
 
-	public async delete(id: any) {
-		const { rol } = model;
+  public async delete(id: any) {
+    const { rol } = model;
 
-		try {
-			const cus = await rol.findOne({ where: { id: id } });
-			await cus.destroy();
-		} catch (e) {
-			console.log(e);
-			return {};
-		}
-	}
+    const entry = await rol.findOne({ where: { id: id } });
+    return await entry.destroy();
+  }
 
-	public async update(rolObj: any) {
-		const { rol } = model;
+  public async updateById(rolObj: any) {
+    const { rol } = model;
 
-		await rol.update(rolObj, {
-			where: {
-				id: rolObj.id,
-			},
-		});
-	}
+    let where = {
+      id: rolObj.id,
+    };
 
-	public async create(rolObj: any) {
-		const { rol } = model;
+    return await rol.update(rolObj, { where });
+  }
 
-		try {
-			return rol.create(rolObj, {
-				include: [],
-			});
-		} catch (e) {
-			console.log(e);
-			return {};
-		}
-	}
+  public async create(rolObj: any) {
+    const { rol } = model;
+
+    return rol.create(rolObj, {
+      include: [],
+    });
+  }
 }

@@ -10,7 +10,7 @@ function createToken(user) {
     iat: moment().unix(),
     exp: moment().add(14, 'days').unix()
   }
-
+console.log("process.env.SECRET_TOKEN "  + process.env.SECRET_TOKEN)
   return jwt.encode(payload, process.env.SECRET_TOKEN)
 
 }

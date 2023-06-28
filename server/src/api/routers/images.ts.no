@@ -4,8 +4,7 @@ import AlbumCtrl from "../../controllers/AlbumCtrl";
 import AlbumService from "../../services/album";
 import { Container } from "typedi";
 
-const route = Router();
-console.log("entro a images");
+const route = Router(); 
 
 export default (app) => {
 

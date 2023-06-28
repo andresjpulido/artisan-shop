@@ -132,7 +132,7 @@ function createOrder(requestObj) {
 
 function getOpenedOrders() {
 
-    let url = ORDER_URL + "?status=opened";
+    let url = ORDER_URL + "?id_orderStatus=3";
 
     return (dispatch, getState) => {
         ActionUtility.invokeServiceGet(dispatch, GET_ORD_OP, url);
@@ -142,7 +142,7 @@ function getOpenedOrders() {
 
 function getOrdersByStatus(id) {
 
-    let url = ORDER_URL + "?status=" + id;
+    let url = ORDER_URL + "?id_orderStatus=" + id;
 
     return (dispatch, getState) => {
         ActionUtility.invokeServiceGet(dispatch, GET_ORD_OP, url);

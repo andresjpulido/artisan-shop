@@ -1,12 +1,9 @@
-import { Router, Request, Response } from "express";
-import middlewares from "../middlewares";
+import { Router } from "express"; 
 import reportService from "../../services/reportService";
 import { Container } from "typedi";
-
-const auth = require("../middlewares/auth");
-const route = Router();
+import auth from "../middlewares/auth";
  
-export default (app) => {
+export default (app:Router) => {
 	app.get("/productionreport", async (req, res, next) => {
 		//TODO validate inputs
 		const startDate = req.query.startDate;

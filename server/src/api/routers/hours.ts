@@ -1,12 +1,11 @@
-import { Router, Request, Response } from "express";
-import middlewares from "../middlewares";
-import HoursCtrl from '../../controllers/hourCtrl';
+import { Router } from "express";
+ 
+import HoursCtrl from '../controllers/hourCtrl';
 import { Container } from "typedi";
 import hourService from '../../services/hourService';
-const auth = require('../middlewares/auth')
-const route = Router();
+import auth from "../middlewares/auth"
 
-export default (app) => {
+export default (app:Router) => {
 
     //app.get('/hours', auth, HoursCtrl.getHours)
     //app.get('/hours', HoursCtrl.getHours)

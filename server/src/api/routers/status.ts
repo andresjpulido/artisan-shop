@@ -1,12 +1,9 @@
-import { Router, Request, Response } from "express";
-import middlewares from "../middlewares";
-import StatusCtrl from '../../controllers/statusCtrl';
+import { Router } from "express"; 
+import StatusCtrl from '../controllers/statusCtrl';
 import { Container } from "typedi";
-const auth = require('../middlewares/auth')
-const route = Router();
-console.log("entro a images");
+import auth from "../middlewares/auth";
 
-export default (app) => {
+export default (app:Router) => {
 
     app.get('/status', StatusCtrl.getAll)
 

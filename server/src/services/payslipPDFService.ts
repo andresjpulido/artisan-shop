@@ -2,8 +2,8 @@
 
 import model from "../models/index";
 import { Service, Inject } from "typedi";
-import { getNameOfDay } from "../util";
-import { generatePdf } from "../utilPdf";
+import { getNameOfDay } from "../utils/util";
+import { generatePdf } from "../utils/utilPdf";
 import parameterService from "./parameterService";
 
 const fs = require("fs");

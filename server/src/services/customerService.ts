@@ -4,112 +4,74 @@ import model from "../models";
 
 @Service()
 export default class customerService {
-	constructor() {}
+  constructor() {}
 
-	public async getAll(queryObj) {
-		const { customer } = model;
+  public async getAll(queryObj) {
+    const { customer } = model;
 
-		try {
-			return customer.findAll(
-				{
-					where: queryObj,
-					include: [],
-					order: [
-						['id']
-					]
-				},
-			)
-		} catch (e) {
-			console.log(e);
-			return {};
-		}
-	}
+    return customer.findAll({
+      where: queryObj,
+      include: [],
+      order: [["id"]],
+    });
+  }
 
-	public async getAllAutocomplete(queryObj) {
-		 
-		const { customer } = model;
-		return await customer.findAll({
-			where: {
-				
-					[Op.or]: [
-					  {
-						firstName: {
-						  [Op.iLike]: '%' + queryObj.firstName + '%'
-						}
-					  },
-					  {
-						lastName: {
-						  [Op.iLike]: '%' + queryObj.lastName + '%'
-						}
-					  }
-					]
-				
-			},
-			include: [],
-			order: [["id"]],
-		});
-	}
+  public async getAllAutocomplete(queryObj) {
+    const { customer } = model;
+    return await customer.findAll({
+      where: {
+        [Op.or]: [
+          {
+            firstName: {
+              [Op.iLike]: "%" + queryObj.firstName + "%",
+            },
+          },
+          {
+            lastName: {
+              [Op.iLike]: "%" + queryObj.lastName + "%",
+            },
+          },
+        ],
+      },
+      include: [],
+      order: [["id"]],
+    });
+  }
 
-	public async getOne(id:any) {
-		const { customer } = model;
+  public async getOne(id: any) {
+    const { customer } = model;
 
-		try {
-			return customer.findOne(
-				{
-					where: {
-						id: id
-					},
-					include: [],
-					order: [
-						['id']
-					]
-				},
-			)
-		} catch (e) {
-			console.log(e);
-			return {};
-		}
-	}
+    return customer.findOne({
+      where: {
+        id: id,
+      },
+      include: [],
+      order: [["id"]],
+    });
+  }
 
-	public async delete(id:any) {
-        const { customer } = model;
+  public async delete(id: any) {
+    const { customer } = model;
 
-		try {
-			const cus = await customer.findOne({ where: { id: id } });
-            await cus.destroy();
- 
-		} catch (e) {
-			console.log(e);
-			return {};
-		}
-    }
+    const cus = await customer.findOne({ where: { id: id } });
+    return await cus.destroy();
+  }
 
-	public async update(customerObj: any) {
-		const { customer } = model;
-		console.log(customerObj)
-        await customer.update(customerObj, {
-			where: {
-			  id: customerObj.id
-			}
-		  });
-    }
+  public async update(customerObj: any) {
+    const { customer } = model;
 
-	public async create(customerObj: any) {
+    return await customer.update(customerObj, {
+      where: {
+        id: customerObj.id,
+      },
+    });
+  }
 
-		const { customer } = model;
-        
-		console.log(customerObj)
+  public async create(customerObj: any) {
+    const { customer } = model;
 
-		try {
-			return customer
-            .create(customerObj, {
-                include: []
-            })
- 
-		} catch (e) {
-			console.log(e);
-			return {};
-		}
-    }
-
+    return customer.create(customerObj, {
+      include: [],
+    });
+  }
 }

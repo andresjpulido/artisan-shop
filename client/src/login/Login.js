@@ -30,6 +30,8 @@ export default function Login() {
   }
 
   const onChange = ev => {
+    ev.persist()
+    console.log(ev)
     setForm(form => ({ ...form, [ev.target.name]: ev.target.value }));
   };
 

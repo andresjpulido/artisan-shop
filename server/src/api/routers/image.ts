@@ -1,18 +1,16 @@
-import { Router, Request, Response } from "express";
-import middlewares from "../middlewares";
+import { Router } from "express";
+import auth from "../middlewares/auth"
 import imageService from "../../services/imageService";
-import Image from "../../controllers/imageCtrl"
+//import Image from "../../controllers/imageCtrl"
 import { Container } from "typedi";
-var multer  = require('multer')
+//var multer  = require('multer')
+ 
 
-const auth = require("../middlewares/auth");
-const route = Router();
+//var upload = multer({ dest: 'uploads/' })
+//const cloudinary = require('cloudinary')
 
-var upload = multer({ dest: 'uploads/' })
-const cloudinary = require('cloudinary')
-
-export default (app) => {
-
+export default (app:Router) => {
+/*
 	app.put("/images", upload.single('file'), async (req, res, next) => {
 		const id_product = req.body.id_product;
 		const id = req.body.id;
@@ -23,6 +21,7 @@ console.log(id_product, id)
 
 		//invoke cloudImage
 		//set url in db
+		 
 		cloudinary.config({
 			cloud_name: process.env.CLOUD_NAME,
 			api_key: process.env.API_KEY,
@@ -57,7 +56,7 @@ console.log(id_product, id)
 		const img = await serviceInstance.getImage(id);
 
 		return res.json(img);
-	});
+	});*/
 
 
 /*

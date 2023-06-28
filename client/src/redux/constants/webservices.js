@@ -1,4 +1,4 @@
-export const HOST = 'http://192.168.20.11:4000'
+export const HOST = 'http://192.168.1.2:4000'
 
 
 export const CUSTOMERS_URL = HOST + '/api/customers'

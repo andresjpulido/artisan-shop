@@ -1,13 +1,13 @@
 import { Service, Inject } from "typedi";
 import model from "../models";
 import db from "../models/index";
-import { zfill } from "../util";
+import { zfill } from "../utils/util";
 const { Op } = require("sequelize");
 
 @Service()
 export default class productService {
 	public async create(productObj) {
-		console.log(productObj);
+		 
 		const { product, productType, size } = model;
 		//traer codigos size typeproduct
 		const productTypeObj = await productType.findOne({

@@ -1,7 +1,7 @@
 import { Service, Inject } from "typedi";
 import { IntegerDataType, Op } from "sequelize";
 import model from "../models";
-import { addDays } from "../util";
+import { addDays } from "../utils/util";
 
 const { QueryTypes } = require("sequelize");
 

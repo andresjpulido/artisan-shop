@@ -1,16 +1,12 @@
-import { Router, Request, Response } from "express";
-import middlewares from "../middlewares";
-import UserCtrl from '../../controllers/admin/userCtrl'
-import { Container } from "typedi";
-const auth = require('../middlewares/auth')
-const route = Router(); 
+import { Router } from "express"; 
+import AuthCtrl from '../controllers/admin/authCtrl'  
+import auth from "../middlewares/auth"
 
-export default (app) => {
+export default (app:Router) => {
 
-    app.post('/signup', UserCtrl.signUp)
-    app.post('/signIn', UserCtrl.signIn)
+    app.post('/signup', AuthCtrl.signUp)
+    app.post('/signIn', AuthCtrl.signIn)  
+    app.get('/version',AuthCtrl.version )
+    app.post('/private', auth, AuthCtrl.private)
     
-    app.post('/user', auth, UserCtrl.create)
-    app.get('/version',UserCtrl.version )
-    app.post('/private', auth, UserCtrl.private)
 };

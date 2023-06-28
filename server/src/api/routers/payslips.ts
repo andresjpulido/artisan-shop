@@ -1,17 +1,15 @@
-import { Router, Request, Response } from "express";
-import middlewares from "../middlewares";
-import PayslipsCtrl from "../../controllers/payslipCtrl";
-import PayslipsPDFCtrl from "../../controllers/payslipPDFCtrl";
+import { Router } from "express"; 
+import PayslipsCtrl from "../controllers/payslipCtrl";
+import PayslipsPDFCtrl from "../controllers/payslipPDFCtrl";
 import payslipPDFService from "../../services/payslipPDFService";
 import payslipService from "../../services/payslipService";
 import hourService from "../../services/hourService";
 import { Container } from "typedi";
-const auth = require("../middlewares/auth");
-const route = Router();
-import { generatePdf } from "../../utilPdf";
+import auth from "../middlewares/auth";
+import { generatePdf } from "../../utils/utilPdf";
 import parameterService from "../../services/parameterService";
 
-export default (app) => {
+export default (app:Router) => {
 	//app.get('/payslips/:payslipid', PayslipsCtrl.getPayslipsById)
 	//app.get('/payslippdf/:payslipid', PayslipsPDFCtrl.readPayslip)
 	// app.post('/payslip', PayslipsCtrl.create)

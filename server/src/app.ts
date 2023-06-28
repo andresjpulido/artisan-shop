@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import config from './config';
 const loaders = require('./loaders');
 const express = require('express');

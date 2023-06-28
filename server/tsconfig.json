@@ -22,9 +22,7 @@
       "noEmit": false,
       "esModuleInterop": true
     },
-    "include": [
-      "./src/**/*"
-, "src/models/image/.js"    ],
+    "include": ["./src/**/*", "src/models/image/.js" , "./test/*"],
     "exclude": [
       "node_modules",
       "tests"
