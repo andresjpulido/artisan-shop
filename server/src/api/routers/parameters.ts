@@ -1,12 +1,10 @@
 import { Router } from "express";
 import middlewares from "../middlewares";
-import ParameterCtrl from '../controllers/parameterCtrl'
-import { Container } from "typedi";
-const auth = require('../middlewares/auth')
-const route = Router(); 
+import ParameterCtrl from '../controllers/parameterCtrl';
+import auth from "../middlewares/auth"
 
 export default (app:Router) => {
 
-    app.get('/parameters', ParameterCtrl.findAll)
+    app.get('/parameters', ParameterCtrl.get)
 
 };

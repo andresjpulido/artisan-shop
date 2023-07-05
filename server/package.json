@@ -5,7 +5,7 @@
   "main": "src/app.ts",
   "scripts": {
     "clean": "rm -rf build && mkdir build",
-    "clean-jest": "jest --clearCache && jest  --coverage --watchAll --detectOpenHandles --testTimeout=14000", 
+    "clean-jest": "jest --clearCache && jest  --coverage --watchAll --detectOpenHandles --testTimeout=14000",
     "populatedb": "npx ts-node ./scripts/loadData.ts",
     "build": "tsc",
     "start": "nodemon",
@@ -45,8 +45,10 @@
       "<rootDir>/src/**/*.ts"
     ],
     "coverageDirectory": "./public/coverage",
-    "testEnvironment": "node" ,
-    "setupFiles": ["<rootDir>/test/setEnvVars.js"]
+    "testEnvironment": "node",
+    "setupFiles": [
+      "<rootDir>/test/setEnvVars.js"
+    ]
   },
   "jest-stare": {
     "resultDir": "public/jest-stare",
@@ -83,7 +85,7 @@
     "jwt-simple": "^0.5.6",
     "method-override": "^3.0.0",
     "moment": "^2.29.4",
-    "multer": "^2.0.0-rc.4",
+    "multer": "^1.4.2",
     "node-rsa": "^1.1.1",
     "pdfmake": "^0.2.7",
     "pg": "^8.11.0",

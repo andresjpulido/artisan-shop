@@ -9,13 +9,13 @@ export default (app:Router) => {
     app.get('/locations', async (req, res, next) => {
         const queryObj = req.query
         const serviceInstance = Container.get(locationService);
-        let list =await serviceInstance.getAll(queryObj);
+        let list =await serviceInstance.get(queryObj);
  		return res.json(list);
     })
     app.get('/locations/:id', async (req, res, next) => {
         const serviceInstance = Container.get(locationService);
         const id = req.params.id;
-		const location = await serviceInstance.getOne(id);
+		const location = await serviceInstance.getById(id);
  		return res.json(location);
     })
     app.put('/locations', async (req, res, next) => {

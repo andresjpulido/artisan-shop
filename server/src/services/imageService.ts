@@ -4,9 +4,10 @@ import model from "../models";
 import { addDays } from "../utils/util";
 
 const { QueryTypes } = require("sequelize");
+const cloudinary = require('cloudinary')
 
 @Service()
-export default class customerService {
+export default class imageService {
 	constructor() {}
 
 	public async update(imageObj: any) {

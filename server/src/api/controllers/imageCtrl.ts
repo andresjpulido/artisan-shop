@@ -1,33 +1,38 @@
 'use strict'
 import { Request, Response, NextFunction } from "express";
 import model from '../../models/index'
+ 
+const fs = require("fs");
 
 const { image } = model;
-const cloudinary = require('cloudinary')
+import uploads from "../middlewares/cloudinary";
 
-class Image {
+export default class ImageController {
 
-    static create(req: Request, res: Response, next: NextFunction) {
+    static async create(req: Request, res: Response, next: NextFunction) {
         console.log("req.body", req.body)
-        console.log("req.file", req.file)
+        console.log("req.file", req.files)
         console.log("req.files", req.body.files);
 
-        cloudinary.config({
-            cloud_name: process.env.CLOUD_NAME,
-            api_key: process.env.API_KEY,
-            api_secret: process.env.API_SECRET
-        })
+        const uploader = async (path) => { 
+            return await uploads(path, "Images"); 
+          };
 
-        cloudinary.uploader.upload(req.file.path)
-            .then(results => { 
-                console.log("results", results)
-            })
-            .catch((err) => console.log(err))
+          let urls = [];
+          const files:any = req.files;
+          for (const file of files) {
+            const { path } = file;
+            let newPath = await uploader(path);
+            console.log(newPath)
+            urls.push(newPath);
+            fs.unlinkSync(path); 
+          }
 
+ 
 
 //TODO update image url
 
-        return res.status(200).send("ok");
+        return res.status(200).send(urls);
 
 
         //TODO validate files
@@ -80,5 +85,4 @@ class Image {
                 return res.status(200).send("ok");*/
     }
 
-}
-export default Image;
+} 

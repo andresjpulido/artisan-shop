@@ -1,64 +1,41 @@
-'use strict'
+"use strict";
 import { Request, Response, NextFunction } from "express";
-import model from '../../models/index'
-
-const { inventoryModel, size, productType } = model;
+import { Container } from "typedi";
+import service from "../../services/locationService";
 
 export default class Inventory {
-/* 
+  /* 
 TODO agregar la transaccion para ingresar primero el movimiento y despues hacer la actualizacion en el inventario 
 */
-  static createEntry(req: Request, res: Response, next: NextFunction) {
+  static async createEntry(req: Request, res: Response, next: NextFunction) {
+    let newEntry = req.body;
+    try {
+      const instance = Container.get(service);
+      newEntry = await instance.create(newEntry);
+    } catch (error) {
+      return next(error);
+    }
 
-    console.log("req.body::" , req.body)
-    const { amount, idSize, idProductType } = req.body
-    const { userId } = req.params
-
-    const inventoryModelObj = {
-      amount: amount, 
-      id_size: idSize, 
-      id_productType: idProductType
-    };
-     
-    return inventoryModel
-      .create(inventoryModelObj)
-      .then(inv => res.status(201).send({
-        message: `inventory ${inv.id} has been created successfully `,
-        inv
-      }))
-      .catch(function (err) {
-        console.log(" se petaquio esta joda", err)
-        return res.status(500).send({
-          success: 'false',
-          code: "CODE",
-          message: 'Error' + err
-        })
-      }
-      )
+    return res.status(200).json(newEntry);
   }
 
-/*
+  /*
 TODO Agregar metodo para obtener el historial de todos los movimientos generados en un periodo en particular
 */
-  static findAll(req: Request, res: Response, next: NextFunction) {
-    return inventoryModel.findAll(
-      {
-        include:[size, productType],
-        order: [
-          [productType, 'name', 'ASC'],
-          [size, 'name', 'ASC']
-        ]
-      },
-      ).then(inventory => res.status(200).send(inventory))
-      .catch(function (err) {
-        console.log(" se petaquio esta joda", err)
-        return res.status(500).send({
-          success: 'false',
-          code: "CODE",
-          message: 'Error' + err
-        })
-      }
-      )
-  }
+  static async findAll(req: Request, res: Response, next: NextFunction) {
+    const queryObj = req.query;
+    let list = [];
 
-} 
+    try {
+      const instance = Container.get(service);
+
+      if (queryObj.autocomplete === "true")
+        list = await instance.getAllAutocomplete(queryObj);
+      else list = await instance.get(queryObj);
+    } catch (error) {
+      return next(error);
+    }
+
+    return res.status(200).json(list);
+  }
+}

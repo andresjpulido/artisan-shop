@@ -1,9 +1,22 @@
 "use strict";
 import { Request, Response, NextFunction } from "express";
 import { Container } from "typedi";
-import service from "../../services/hourService";
+import service from "../../services/locationService";
 
-export default class Hours {
+export default class Locations {
+  static async findById(req: Request, res: Response, next: NextFunction) {
+    let item = null;
+    try {
+      const instance = Container.get(service);
+      const id = req.params.id;
+      item = await instance.getById(id);
+    } catch (error) {
+      return next(error);
+    }
+
+    return res.status(200).json(item);
+  }
+
   static async create(req: Request, res: Response, next: NextFunction) {
     let newEntry = req.body;
     try {
@@ -16,7 +29,7 @@ export default class Hours {
     return res.status(200).json(newEntry);
   }
 
-  static async getHours(req: Request, res: Response, next: NextFunction) {
+  static async findAll(req: Request, res: Response, next: NextFunction) {
     const queryObj = req.query;
     let list = [];
 
@@ -33,44 +46,29 @@ export default class Hours {
     return res.status(200).json(list);
   }
 
-  static async getHoursById(req: Request, res: Response, next: NextFunction) {
-    const instance = Container.get(service);
-    const id = req.params.id;
-    let item = null;
+  static async modify(req: Request, res: Response, next: NextFunction) {
+    let updatedRows = 0;
+
     try {
-      item = await instance.getById(id);
+      const instance = Container.get(service);
+      updatedRows = await instance.update(req.body);
     } catch (error) {
       return next(error);
     }
-    return res.status(200).json(item);
+
+    return res.status(200).json(updatedRows);
   }
 
-  static async getHoursByUserUsername(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
-    let username = req.params.username;
-    const instance = Container.get(service);
+  static async remove(req: Request, res: Response, next: NextFunction) {
     const id = req.params.id;
-    let item = null;
-    try {
-      item = await instance.getHoursByUserUsername(username);
-    } catch (error) {
-      return next(error);
-    }
-    return res.status(200).json(item);
-  }
-
-  static async delete(req: Request, res: Response, next: NextFunction) {
     let deletedRows = 0;
     try {
       const instance = Container.get(service);
-      const id = req.params.id;
       deletedRows = await instance.delete(id);
     } catch (error) {
       return next(error);
     }
+
     return res.status(200).json(deletedRows);
   }
 
@@ -79,14 +77,12 @@ export default class Hours {
     res: Response,
     next: NextFunction
   ) {
+    const ids = req.body.ids;
     let deletedRows = 0;
-	const ids = req.body.ids;
-    try {
-      const instance = Container.get(service); 
-      deletedRows = await instance.deleteCollection(ids);
-    } catch (error) {
-      return next(error);
-    }
-    return res.status(200).json(deletedRows);
+
+    const instance = Container.get(service);
+
+    deletedRows = await instance.deleteCollection(ids);
+    return res.status(200).send(deletedRows);
   }
 }
