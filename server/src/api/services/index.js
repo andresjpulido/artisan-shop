@@ -3,10 +3,10 @@
 const jwt = require('jwt-simple')
 const moment = require('moment')
 
-function createToken(user) {
+function createToken(id, username) {
 
   const payload = {
-    sub: user.id,
+    sub: id,
     iat: moment().unix(),
     exp: moment().add(14, 'days').unix()
   }

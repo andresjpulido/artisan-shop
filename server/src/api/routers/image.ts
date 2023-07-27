@@ -1,18 +1,17 @@
 import { Router } from "express";
 import auth from "../middlewares/auth";
-import upload from "../middlewares/multer"
+import upload from "../middlewares/multer";
 import imageService from "../../services/imageService";
 import ImageController from "../controllers/imageCtrl";
 import { Container } from "typedi";
 //var multer  = require('multer')
- 
 
 //var upload = multer({ dest: 'uploads/' })
 //const cloudinary = require('cloudinary')
 
-export default (app:Router) => {
-	app.post("/images", upload.array("imgfiles"), ImageController.create);
-	/*
+export default (app: Router) => {
+  app.post("/images", upload.array("imgfiles"), ImageController.create);
+  /*
 	app.put("/images/:id", auth, ImageController.modify);
 	app.delete("/images/:id", auth, ImageController.remove);
 	app.delete("/images", ImageController.deleteCollection);
@@ -20,7 +19,7 @@ export default (app:Router) => {
 	app.get("/images/:id", ImageController.findOne);
 */
 
-/*
+  /*
 	app.put("/images", upload.single('file'), async (req, res, next) => {
 		const id_product = req.body.id_product;
 		const id = req.body.id;
@@ -68,8 +67,7 @@ console.log(id_product, id)
 		return res.json(img);
 	});*/
 
-
-/*
+  /*
 	app.post("/images", async (req, res, next) => {
 		const imageFiles = req.body.files;
         const idProduct = req.body.idProduct;
@@ -85,6 +83,5 @@ console.log(id_product, id)
 		return res.json(req.body);
 	});
 */
-//app.put("/images", upload.single('file'), Image.create)
-
+  //app.put("/images", upload.single('file'), Image.create)
 };

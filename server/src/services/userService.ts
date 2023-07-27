@@ -1,7 +1,7 @@
 import { Service, Inject } from "typedi";
 import { IntegerDataType, Op } from "sequelize";
 import model from "../models";
-import privatekey from "../api/controllers/admin/privatekey";
+import privatekey from "./privatekey";
 
 @Service()
 export default class userService {

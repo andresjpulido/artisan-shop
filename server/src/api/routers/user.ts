@@ -3,7 +3,7 @@ import UserCtrl from "../controllers/admin/userCtrl";
 
 import auth from "../middlewares/auth";
 
-import privatekey from "../controllers/admin/privatekey";
+import privatekey from "../../services/privatekey";
 
 export default (app: Router) => {
   app.post("/users", UserCtrl.create);

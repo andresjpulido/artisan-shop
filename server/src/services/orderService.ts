@@ -1,16 +1,17 @@
 import { Service, Inject } from "typedi";
 import { IntegerDataType, Op } from "sequelize";
 import model from "../models";
+import Customer from "../api/controllers/customerCtrl";
 
 @Service()
 export default class orderService {
   public async getAll(queryObj) {
  
-    const { order } = model;
+    const { order, customer, status } = model;
 
     return await order.findAll({
       where: queryObj,
-      include: [],
+      include: [customer, status],
       order: [["id"]],
     });
   }

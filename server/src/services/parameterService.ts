@@ -11,7 +11,7 @@ export default class parameterService {
     return await parameter.findAll({
       where: queryObj,
       include: [],
-      order: [["id"]],
+      order: [["code"]],
     });
   }
 
@@ -23,7 +23,7 @@ export default class parameterService {
         id: id,
       },
       include: [],
-      order: [["id"]],
+      order: [["code"]],
     });
   }
 }

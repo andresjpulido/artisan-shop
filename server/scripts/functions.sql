@@ -5,7 +5,7 @@ parameter:
 return:
 	date of first day in the week:date
 *********************************/
-CREATE OR REPLACE FUNCTION firstDayOfWeek(inputdate date) RETURNS date AS $$
+CREATE OR REPLACE FUNCTION firstDayOfWeek(inputdate timestamp) RETURNS date AS $$
 	DECLARE
 		resultDate date := CURRENT_DATE;
 		dayofweek integer := 0;
@@ -26,7 +26,7 @@ CREATE OR REPLACE FUNCTION firstDayOfWeek(inputdate date) RETURNS date AS $$
 	END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION lastDayOfWeek(inputdate date) RETURNS date AS $$
+CREATE OR REPLACE FUNCTION lastDayOfWeek(inputdate timestamp) RETURNS date AS $$
 	DECLARE
 		resultDate date := CURRENT_DATE;
 		dayofweek integer := 0;

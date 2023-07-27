@@ -5,6 +5,9 @@ const cors = require('cors');
 import config from '../config';
 import swaggerUI from 'swagger-ui-express';
 import fs from 'fs';
+var multer = require('multer');
+var upload = multer();
+
 
 let swaggerFile = `${process.cwd()}/public/swagger.json`
 console.log("swaggerFile" , swaggerFile)
@@ -26,7 +29,9 @@ export default async ({ app }: { app: express.Application }) => {
   app.enable('trust proxy');
 
   app.use(cors());
-  app.use(bodyParser.urlencoded({ extended: false }));
+  //app.use(bodyParser.urlencoded({ extended: false }));
+  
+  
   app.use(express.json({
     inflate: true,
     limit: '100kb',
@@ -36,7 +41,8 @@ export default async ({ app }: { app: express.Application }) => {
     verify: undefined
   }))
   
-  
+  app.use(upload.array()); 
+
   // ...Más middlewares
   app.use(config.api.prefix, routes());
 

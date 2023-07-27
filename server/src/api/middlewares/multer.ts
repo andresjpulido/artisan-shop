@@ -1,36 +1,39 @@
 import multer, { FileFilterCallback } from "multer";
-import path from 'path';
+import path from "path";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/')
+    cb(null, "uploads/");
   },
   filename: function (req, file, cb) {
-    cb(null, new Date().toISOString() + '-' + file.originalname)
-  }
-})
-
+    cb(
+      null,
+      new Date().toISOString().replace(/:/g, "-") + "-" + file.originalname
+    );
+    console.log("solicitud ", req);
+  },
+});
 
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-    cb(null, true)
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    cb(null, true);
   } else {
     //reject file
-    cb({
-      message: 'Unsupported file format'
-    }, false)
+    cb(
+      {
+        message: "Unsupported file format",
+      },
+      false
+    );
   }
-}
+};
 
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 1024 * 1024
+    fileSize: 1024 * 1024,
   },
-  fileFilter: fileFilter
-})
-
- 
-
+  fileFilter: fileFilter,
+});
 
 export default upload;

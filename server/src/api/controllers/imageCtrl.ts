@@ -1,45 +1,47 @@
-'use strict'
+"use strict";
 import { Request, Response, NextFunction } from "express";
-import model from '../../models/index'
- 
+import model from "../../models/index";
+
 const fs = require("fs");
 
 const { image } = model;
 import uploads from "../middlewares/cloudinary";
 
 export default class ImageController {
+  static async create(req: Request, res: Response, next: NextFunction) {
+    console.log("req.body", req.body);
+    console.log("req.file", req.files);
+    //console.log("req.files", req.body.files);
 
-    static async create(req: Request, res: Response, next: NextFunction) {
-        console.log("req.body", req.body)
-        console.log("req.file", req.files)
-        console.log("req.files", req.body.files);
+    let urls = [];
 
-        const uploader = async (path) => { 
-            return await uploads(path, "Images"); 
-          };
+    try {
+      const uploader = async (path: String) => {
+        return await uploads(path, "Images");
+      };
 
-          let urls = [];
-          const files:any = req.files;
-          for (const file of files) {
-            const { path } = file;
-            let newPath = await uploader(path);
-            console.log(newPath)
-            urls.push(newPath);
-            fs.unlinkSync(path); 
-          }
+      const files: any = req.files;
+      if (files)
+        for (const file of files) {
+          const { path } = file;
+          let newPath = await uploader(path);
+          console.log(newPath);
+          urls.push(newPath);
+          fs.unlinkSync(path);
+        }
+    } catch (error) {
+      return next(error);
+    }
 
- 
+    //TODO update image url
 
-//TODO update image url
+    return res.status(200).send(urls);
 
-        return res.status(200).send(urls);
+    //TODO validate files
 
+    //TODO compress IMAGES
 
-        //TODO validate files
-
-        //TODO compress IMAGES
-
-        /*
+    /*
                 imageObj = {
                     "id_product": req.body.id_product,
                     "mimeType": req.file.mimetype,
@@ -83,6 +85,5 @@ export default class ImageController {
                     )
                 }
                 return res.status(200).send("ok");*/
-    }
-
-} 
+  }
+}
