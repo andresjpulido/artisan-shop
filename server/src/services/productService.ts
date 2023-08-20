@@ -70,7 +70,7 @@ inner join location l on p.id_location = l.id `;
 		const { product, productType, size, location } = model;
 		return await product.findAll({
 			where: queryObj,
-			include: [productType, size, location],
+			include: [productType, size, location, "images"],
 			order: [["id"]],
 		});
 	}

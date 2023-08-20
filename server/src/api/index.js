@@ -19,6 +19,8 @@ import payslip from './routers/payslips';
 import rol from './routers/rol';
 import resource from './routers/resource';
 import location from './routers/location';
+import note from './routers/notes';
+import deposit from './routers/deposit';
 
 // guaranteed to get dependencies
 export default () => {
@@ -44,6 +46,8 @@ export default () => {
 	rol(app);
 	resource(app);
 	location(app);
+	note(app);
+	deposit(app);
 	
 	return app
 }

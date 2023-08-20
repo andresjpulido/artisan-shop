@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { Container } from "typedi";
 import rolService from "../../../services/rolService";
 
-const service = require("../../services");
+const jwtutil = require("../../../utils/jwt");
 
 export default class RolCtrl {
   static async create(req: Request, res: Response, next: NextFunction) {

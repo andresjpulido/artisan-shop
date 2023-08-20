@@ -3,11 +3,11 @@ import { IntegerDataType, Op } from "sequelize";
 import model from "../models";
 
 @Service()
-export default class noteService {
+export default class depositService {
   public async getAll(queryObj) {
-    const { note, customer, status } = model;
+    const { deposit, customer, status } = model;
 
-    return await note.findAll({
+    return await deposit.findAll({
       where: queryObj,
       include: [],
       order: [["id"]],
@@ -15,17 +15,17 @@ export default class noteService {
   }
 
   public async getAllAutocomplete(queryObj) {
-    const { note } = model;
-    return await note.findAll({
+    const { deposit } = model;
+    return await deposit.findAll({
       include: [],
       order: [["id"]],
     });
   }
 
   public async getById(id: any) {
-    const { note } = model;
+    const { deposit } = model;
 
-    return note.findOne({
+    return deposit.findOne({
       where: {
         id: id,
       },
@@ -35,9 +35,9 @@ export default class noteService {
   }
 
   public async getByOrderId(id: any) {
-    const { note } = model;
+    const { deposit } = model;
 
-    return note.findOne({
+    return deposit.findOne({
       where: {
         id_order: id,
       },
@@ -47,16 +47,16 @@ export default class noteService {
   }
 
   public async delete(id: any) {
-    const { note } = model;
+    const { deposit } = model;
 
-    const cus = await note.findOne({ where: { id: id } });
+    const cus = await deposit.findOne({ where: { id: id } });
     return await cus.destroy();
   }
 
   public async update(customerObj: any) {
-    const { note } = model;
+    const { deposit } = model;
 
-    return await note.update(customerObj, {
+    return await deposit.update(customerObj, {
       where: {
         id: customerObj.id,
       },
@@ -64,16 +64,16 @@ export default class noteService {
   }
 
   public async create(customerObj: any) {
-    const { note } = model;
+    const { deposit } = model;
 
-    return note.create(customerObj, {
+    return deposit.create(customerObj, {
       include: [],
     });
   }
 
   public async deleteCollection(ids) {
-    const { note } = model;
+    const { deposit } = model;
 
-    return await note.destroy({ where: { id: ids } });
+    return await deposit.destroy({ where: { id: ids } });
   }
 }

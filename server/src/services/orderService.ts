@@ -1,12 +1,10 @@
 import { Service, Inject } from "typedi";
 import { IntegerDataType, Op } from "sequelize";
 import model from "../models";
-import Customer from "../api/controllers/customerCtrl";
 
 @Service()
 export default class orderService {
   public async getAll(queryObj) {
- 
     const { order, customer, status } = model;
 
     return await order.findAll({
@@ -17,21 +15,22 @@ export default class orderService {
   }
 
   public async getAllAutocomplete(queryObj) {
-    const { order } = model;
+    const { order, customer, status } = model;
+
     return await order.findAll({
-      include: [],
+      include: [customer],
       order: [["id"]],
     });
   }
 
   public async getOne(id: any) {
-    const { order } = model;
+    const { order, customer} = model;
 
     return order.findOne({
       where: {
         id: id,
       },
-      include: [],
+      include: [customer],
       order: [["id"]],
     });
   }
@@ -43,21 +42,21 @@ export default class orderService {
     return await cus.destroy();
   }
 
-  public async update(customerObj: any) {
-    const { customer } = model;
+  public async update(updateObj: any) {
+    const { order } = model;
 
-    return await customer.update(customerObj, {
+    return await order.update(updateObj, {
       where: {
-        id: customerObj.id,
+        id: updateObj.id,
       },
     });
   }
 
-  public async create(customerObj: any) {
-    const { order } = model;
+  public async create(orderObj: any) {
+    const { order, product } = model;
 
-    return order.create(customerObj, {
-      include: [],
+    return order.create(orderObj, {
+      include: ["products"],
     });
   }
 }

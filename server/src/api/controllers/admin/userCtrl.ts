@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { Container } from "typedi";
 import userService from "../../../services/userService";
 
-const service = require("../../services");
+const jwtutil = require("../../../utils/jwt");
 
 export default class Users {
   static async create(req: Request, res: Response, next: NextFunction) {

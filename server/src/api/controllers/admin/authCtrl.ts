@@ -5,7 +5,7 @@ import userService from "../../../services/userService";
 import authService from "../../../services/authService";
 import { isNull } from "lodash";
 
-const service = require("../../services");
+const jwtutil = require("../../../utils/jwt");
 
 export default class Auth {
   static private(req: Request, res: Response, next: NextFunction) {
@@ -50,7 +50,7 @@ export default class Auth {
       const userInstance = Container.get(userService);
       const newUser = await userInstance.create(userObj);
 
-      if (newUser.id) token = service.createToken(newUser);
+      if (newUser.id) token = jwtutil.createToken(newUser);
 
       return res.status(201).send({ token });
     } catch (error) {

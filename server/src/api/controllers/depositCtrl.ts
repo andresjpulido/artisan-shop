@@ -1,9 +1,9 @@
 "use strict";
 import { Request, Response, NextFunction } from "express";
 import { Container } from "typedi";
-import service from "../../services/noteService";
+import service from "../../services/depositService";
 
-export default class Hours {
+export default class Deposit {
   static async create(req: Request, res: Response, next: NextFunction) {
     let newEntry = req.body;
     try {
@@ -27,7 +27,7 @@ export default class Hours {
     return res.status(200).json(updatedRows);
   }
 
-  static async getNotes(req: Request, res: Response, next: NextFunction) {
+  static async getDeposits(req: Request, res: Response, next: NextFunction) {
     const queryObj = req.query;
     let list = [];
 
@@ -44,7 +44,7 @@ export default class Hours {
     return res.status(200).json(list);
   }
 
-  static async getNoteById(req: Request, res: Response, next: NextFunction) {
+  static async getDepositById(req: Request, res: Response, next: NextFunction) {
     const instance = Container.get(service);
     const id = req.params.id;
     let item = null;
@@ -56,7 +56,7 @@ export default class Hours {
     return res.status(200).json(item);
   }
 
-  static async getNoteByOrderId(
+  static async getDepositByOrderId(
     req: Request,
     res: Response,
     next: NextFunction

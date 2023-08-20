@@ -2,7 +2,7 @@ import { Service, Inject } from "typedi";
 import { IntegerDataType, Op } from "sequelize";
 import model from "../models";
 import publickey from "./privatekey";
-import service from "../api/services/index";
+import service from "../utils/jwt";
 
 @Service()
 export default class authService {

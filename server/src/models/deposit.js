@@ -1,12 +1,12 @@
 "use strict";
 
 module.exports = (sequelize, DataTypes) => {
-  const Note = sequelize.define(
-    "note",
+  const Deposit = sequelize.define(
+    "deposit",
     {
       id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-      content: DataTypes.STRING,
-      isprivate: DataTypes.BOOLEAN,
+      description: DataTypes.STRING,
+      amount: DataTypes.DOUBLE,
       id_order: DataTypes.INTEGER,
       createdAt: "TIMESTAMP",
       updatedAt: "TIMESTAMP",
@@ -15,15 +15,15 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       //modelName: 'Employee'
       // options
-      tableName: "note",
+      tableName: "deposit",
     }
   );
 
-  Note.associate = function (models) {
-    Note.belongsTo(models.order, {
+  Deposit.associate = function (models) {
+    Deposit.belongsTo(models.order, {
       foreignKey: "id_order",
     }); 
   };
 
-  return Note;
+  return Deposit;
 };

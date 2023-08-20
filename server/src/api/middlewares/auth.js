@@ -1,11 +1,11 @@
 'use strict'
 
-const services = require('../services')
+const services = require('../../utils/jwt')
 
 function isAuth (req, res, next) {
 
   if (!req.headers.authorization) {
-    return res.status(403).send({ message: 'No tienes autorización' })
+    return res.status(401).send({ message: 'The request lacks authorization token' })
   }
 
   const token = req.headers.authorization.split(' ')[1]
@@ -16,7 +16,7 @@ function isAuth (req, res, next) {
       next()
     })
     .catch(response => { 
-      return res.status(response.status).send({ code: response.code, message: 'No tienes autorización' })
+      return res.status(401).send({ code: 401, message: 'The request has an invalid authorization token' })
        
     })
 }

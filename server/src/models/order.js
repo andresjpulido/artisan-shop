@@ -1,6 +1,6 @@
 "use strict";
 
-//const { sequelize } = require("sequelize");  
+//const { sequelize } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   const order = sequelize.define(
@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       createdAt: "TIMESTAMP",
       updatedAt: "TIMESTAMP",
       deliveryDate: "TIMESTAMP",
+      estimatedDeliveryDate: "TIMESTAMP",
       description: DataTypes.STRING,
+      price: DataTypes.DOUBLE
     },
     {
       sequelize,
@@ -32,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     order.hasMany(models.product, {
       foreignKey: "id_order",
       as: "products",
+      onUpdate: 'CASCADE'
     });
   };
 
