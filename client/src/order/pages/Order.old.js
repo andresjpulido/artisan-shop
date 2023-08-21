@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { connect, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { createOrder, getOrder } from '../redux/actions/orderActions'
+import { createOrder, getOrder } from '../../redux/actions/orderActions'
 
 function Order(props) {
 

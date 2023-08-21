@@ -12,7 +12,7 @@ export default function Footer(props) {
       <Fragment>
         <br /><br /><br /><br />
         <footer className="footer">
-          <div className="text-center">© 2021 Developed by
+          <div className="text-center">© 2023 Developed by
             <a href="http://www.andresjpulido.com/"> AP</a>
           </div>
         </footer>

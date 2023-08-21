@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { connect } from 'react-redux';
-import { getOrders, getOrder, getOrdersByStatus } from '../redux/actions/orderActions';
-import { getStatusList } from '../redux/actions/statusActions';
-import { dateFormatter } from '../utils/formatters'
+import { getOrders, getOrder, getOrdersByStatus } from '../../redux/actions/orderActions';
+import { getStatusList } from '../../redux/actions/statusActions';
+import { dateFormatter } from '../../utils/formatters'
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 class Orders extends Component {

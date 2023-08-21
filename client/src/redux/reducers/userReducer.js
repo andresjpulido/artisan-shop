@@ -2,7 +2,7 @@ import { GET_USERS, CREATE_USER, GET_USER, NEW_USER, UPD_USER } from '../actions
 
 const initialState = {
   users: [], 
-  user: {  }
+  user: {}
 }
 
 export default (state = initialState, action) => {

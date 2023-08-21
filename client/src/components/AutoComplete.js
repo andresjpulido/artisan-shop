@@ -23,6 +23,7 @@ const SearchBar = ({ results, keyword, updateField }) => {
         lastName={lastName}
         age={age}
         id={id}
+        
       />
     );
   });

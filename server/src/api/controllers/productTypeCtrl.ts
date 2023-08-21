@@ -23,7 +23,7 @@ export default class ProductType {
 
     try {
       const instance = Container.get(productTypeService);
-      const list = await instance.getById(id);
+      item = await instance.getById(id);
     } catch (error) {
       return next(error);
     }

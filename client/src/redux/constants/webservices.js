@@ -1,4 +1,4 @@
-export const HOST = 'http://192.168.1.2:4000'
+export const HOST = 'http://localhost:4000'
 
 
 export const CUSTOMERS_URL = HOST + '/api/customers'
@@ -27,3 +27,5 @@ export const RESOURCE_URL = HOST + '/api/resources'
 export const ROL_URL = HOST + '/api/roles'
 
 export const USER_URL = HOST + '/api/users'
+export const NOTE_URL = HOST + '/api/notes'
+export const DEPOSIT_URL = HOST + '/api/deposits'

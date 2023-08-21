@@ -1,74 +1,66 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import { bindActionCreators } from 'redux'; 
-import {getOrders, getOpenedOrders} from '../redux/actions/orderActions';
+import React, { useEffect } from "react";
+import { getOrders, getOpenedOrders } from "../redux/actions/orderActions";
+import { useDispatch, useSelector } from "react-redux";
+import { ALERT } from "../redux/constants/ActionTypes";
 
-class Dashboard extends Component {
-   
-  componentDidMount(){   
-    this.props.getOpenedOrders();
-  }
+export default function Home(props) {
+  let orders = useSelector((state) => state.orderReducer.orders);
+  const auth = useSelector((state) => state.authReducer.auth);
 
-  formatLastLogin(){
-   
-    var lastlogin = new Date(this.props.user.lastlogin);
-     
-    return (
-          <p className="lead">Your last date login was {new Intl.DateTimeFormat('en-NZ', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: '2-digit' ,
-              hourCycle: 'h24',
-              hour: 'numeric',
-              minute: 'numeric',
-              second: 'numeric'
-          }).format(lastlogin)}.</p>
-    )}
+  const dispatch = useDispatch();
 
-  render() {
-    
-    const user = this.props.user;
-    
-    if(user.username === undefined){
-      //create generic method to check the session agains the jwt key 
-     // this.props.history.push('/')
-      return (<div className="container"></div>)
-    }
+  useEffect(() => {
+    dispatch({ type: ALERT, payload: null });
+    dispatch(getOrders());
+  }, []);
 
-    return (
-      <div className="container">
-      <br /><br /><br />
+  let welcome = "";
 
-        <div className="jumbotron">
+  if (auth === null || auth === undefined || auth.lastlogin === undefined) {
+    welcome = <div></div>;
+  } else {
+    const lastlogin = new Date(auth.lastlogin);
+    let last = new Intl.DateTimeFormat("en-NZ", {
+      year: "numeric",
+      month: "long",
+      day: "2-digit",
+      hourCycle: "h24",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    }).format(lastlogin);
 
-        <h1>Welcome {user.username}!</h1>
-         {this.formatLastLogin()} 
-
-         <h1>Notifications</h1>
-         {
-            this.props.orders && this.props.orders.length > 0  &&
-            <p className="lead">There are<span className="badge">{this.props.orders.length}</span>pending orders.</p>
-         }
-            
-        </div>
-
+    welcome = (
+      <div>
+        <h1>Welcome {auth.username}!</h1>
+        <p className="lead">Your last date login was {last}.</p>
       </div>
     );
   }
+
+  return (
+    <div className="container">
+      <br />
+      <br />
+      <br />
+
+      <div className="jumbotron">
+        {welcome}
+
+        <h1>Notifications</h1>
+        {orders && orders.length > 0 && (
+          <p className="lead">
+            There are<span className="badge">{orders.length}</span>
+            pending orders.
+          </p>
+        )}
+
+        <p className="lead">Lastest Orders</p>
+
+        <p className="lead">Priority Orders</p>
+
+        <p className="lead">Oldest Orders</p>
+      </div>
+    </div>
+  );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    error: state.generalReducer.error,
-    pending: state.generalReducer.pending,
-    user: state.authReducer.user,
-    orders: state.orderReducer.orders
-  }
-}
-
-const mapDispatchToProps = dispatch => bindActionCreators({
-  getOrders, getOpenedOrders
-}, dispatch) 
-
-export default (connect(mapStateToProps, mapDispatchToProps))(Dashboard);
-

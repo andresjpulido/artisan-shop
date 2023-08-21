@@ -10,14 +10,18 @@ export default function ExtraHours() {
 
   const unpaidHours = useSelector(state => state.hourReducer.unpaidHours)
   const user = useSelector(state => state.authReducer.user)
+  const auth = useSelector((state) => state.authReducer.auth);
 
   const [numberRows, setNumberRows] = useState(0)
 
   const dispatch = useDispatch();
   let history = useHistory()
-
+  
   useEffect(() => {
-    dispatch(getHours(user.id_employee))
+    //if param exits get hours of a user else set current user
+    if(auth.employee){
+      dispatch(getHours(auth.employee.id_employee))
+    } 
     dispatch({ type: ALERT, payload: null })
   }, [user])
 

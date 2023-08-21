@@ -1,19 +1,27 @@
-import { SIGNIN } from "../actions/authAction"
+import { SIGNIN } from "../actions/authAction";
 
 const initialState = {
-    user: {}
-}
+  auth: {},
+};
 
 export default (state = initialState, action) => {
+  switch (action.type) {
+    case SIGNIN: {
+      localStorage.setItem("session", action.payload.token);
 
-    switch (action.type) {
-
-        case SIGNIN: {
-            return Object.assign({}, state, { user: action.payload })
-        }
-
-        default: {
-            return { ...state }
-        }
+      return {
+        ...state,
+        auth: {
+          userid: action.payload.id,
+          username: action.payload.username,
+          lastlogin: action.payload.lastlogin,
+          employee: action.payload.employee,
+        },
+      };
     }
-}
+
+    default: {
+      return { ...state };
+    }
+  }
+};

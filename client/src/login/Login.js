@@ -8,7 +8,7 @@ export default function Login() {
 
   const dispatch = useDispatch();
   const [form, setForm] = useState({ username: "", password: "" })
-  const [isValid, setisValid] = useState(false)
+  const [isValid] = useState(false)
 
   useEffect(() => {
     localStorage.setItem('session', 0);
@@ -24,14 +24,14 @@ export default function Login() {
      
     let queryObj = {username:form.username, password:encryptedStr};    
     queryObj.password = encryptedStr
-    const u = dispatch(signIn(queryObj));
+    dispatch(signIn(queryObj));
 
     //event.target.reset()
   }
 
   const onChange = ev => {
     ev.persist()
-    console.log(ev)
+     
     setForm(form => ({ ...form, [ev.target.name]: ev.target.value }));
   };
 

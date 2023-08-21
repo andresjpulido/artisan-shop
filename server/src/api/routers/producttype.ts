@@ -1,5 +1,5 @@
 import { Router } from "express"; 
-import ProductTypeCtrl from '../controllers/ProductTypeCtrl';
+import ProductTypeCtrl from '../controllers/productTypeCtrl';
 import { Container } from "typedi";
 import auth from "../middlewares/auth";
 

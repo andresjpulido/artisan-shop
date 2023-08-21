@@ -10,6 +10,7 @@ export default function Password() {
 
   const user = useSelector(state => state.userReducer.user)
   const [form, setForm] = useState({ password: "" })
+  const auth = useSelector((state) => state.authReducer.auth);
 
   const dispatch = useDispatch();
   let history = useHistory()
@@ -52,7 +53,7 @@ export default function Password() {
     <div className="container">
 
       <br /><br /><br />
-      <h4>Set new password to {user.username}</h4>
+      <h4>Set new password to {auth.username}</h4>
 
       <form>
 

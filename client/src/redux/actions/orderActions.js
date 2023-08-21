@@ -11,6 +11,14 @@ export const GET_ORDER = 'GET_ORDER';
 export const UPD_ORDER = 'UPD_ORDER'
 
 
+function updateOrder(requestObj){
+    let url = ORDER_URL; 
+    return (dispatch, getState) => {
+        ActionUtility.invokeServicePUT(dispatch, UPD_ORDER, requestObj, url);
+    }
+
+}
+
 function getOrders() {
 
     let url = ORDER_URL;
@@ -150,4 +158,4 @@ function getOrdersByStatus(id) {
 
 }
 
-export { getOrders, createOrder, getOrder, getOpenedOrders, getOrdersByStatus };
+export { getOrders, createOrder, getOrder, getOpenedOrders, getOrdersByStatus, updateOrder };
