@@ -1,4 +1,4 @@
-# `Shop`
+# `Artisan Shop`
 
 [![GitHub stars](https://img.shields.io/github/stars/andresjpulido/shop)](https://github.com/andresjpulido/shop/stargazers)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/andresjpulido/shop)
@@ -6,7 +6,7 @@
 
 Inventory management system, production orders and payslip generation.
 
-## `Project description`
+## `Description`
 
 Web application that manages the inventory, the creation of purchase orders, the registration of hours you work and the creation of the weekly payslip.
 
