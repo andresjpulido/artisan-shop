@@ -1,7 +1,0 @@
-name: id
-in: query
-description: Item id
-required: false
-schema:
-  type: integer
-  format: int32
