@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="27,1143" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="store" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<sequence name="sec_emp"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+</sequence>
+
+<sequence name="sec_payslip"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+</sequence>
+
+<sequence name="sec_inventory"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+</sequence>
+
+<sequence name="sec_movement"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+</sequence>
+
+<table name="payslip">
+	<schema name="public"/>
+	<position x="880" y="340"/>
+	<column name="id" not-null="true" sequence="public.sec_payslip">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="description">
+		<type name="text" length="0"/>
+	</column>
+	<column name="creation_date" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="isprocessed" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="payslip_pk" type="pk-constr" table="public.payslip">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="employeeid" index="6"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="employee_fk" index="0"/>
+	</customidxs>
+	<initial-data>
+<![CDATA[id•description•creation_date•createdAt•updatedAt•isprocessed•employeeid⸣
+1•••••false•1]]>
+	</initial-data>
+</table>
+
+<table name="employee">
+	<schema name="public"/>
+	<position x="440" y="300"/>
+	<column name="id" not-null="true" sequence="public.sec_emp">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="firstName">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="lastName">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="movil">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="address">
+		<type name="varchar" length="150"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<column name="email">
+		<type name="varchar" length="60"/>
+	</column>
+	<column name="ird">
+		<type name="varchar" length="13"/>
+	</column>
+	<column name="typeDocument" default-value="'PASS'">
+		<type name="varchar" length="4"/>
+	</column>
+	<column name="document">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="birthDate">
+		<type name="date" length="0"/>
+	</column>
+	<column name="position">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="bankName">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="accountNumber">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="salary">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_ID_EMP" type="pk-constr" table="public.employee">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•firstName•lastName•movil•address•createdAt•updatedAt•email•ird•typeDocument•document•birthDate•position•bankName•accountNumber⸣
+1•Ernesto•Ovalle•445654•Albert Street•••admin@oronegro.co.nz•026-175-319••A7567•1965-02-15•manager•BNZ•546-231-789⸣
+2•Juan•Grande•0219854324•west•••juan@gmail.com•056-175-319••A3267•1979-02-15•jeller•ASB•656-321-789⸣
+3•Juan•Arias•02169745321•Newton•••juan-daniel@gmail.com•079-788-122••A8789•1987-02-15•jeller•BNZ•369-741-852⸣
+4•Andres•Pulido•02102651559•80/308 Halsey Street•••andresjpulido@gmail.com•126-075-219••AT4567•1979-02-15•jeller•Kiwi Bank•123-654-789]]>
+	</initial-data>
+</table>
+
+<sequence name="sec_hour"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+</sequence>
+
+<table name="hour">
+	<schema name="public"/>
+	<appended-sql><![CDATA[insert into hour (activity,start_date,end_date,id_emp) values('polishing','2019-10-01 13:00:00','2019-10-01 17:00:00',1);
+insert into hour (activity,start_date,end_date,id_emp) values('polishing','2019-10-02 13:00:00','2019-10-02 17:00:00',1);
+]]></appended-sql>
+	<position x="1340" y="240"/>
+	<column name="id" not-null="true" sequence="public.sec_hour">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="activity">
+		<type name="text" length="0"/>
+	</column>
+	<column name="start_date">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="end_date" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="id_emp">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<column name="isPaid" not-null="true" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="amount">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="hour_pk" type="pk-constr" table="public.hour">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_activity" index="9"/>
+		<object name="payslipid" index="8"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="activity_fk" index="2"/>
+		<object name="payslip_fk" index="1"/>
+	</customidxs>
+</table>
+
+<sequence name="sec_order"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+</sequence>
+
+<sequence name="sec_user"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+</sequence>
+
+<table name="user">
+	<schema name="public"/>
+	<position x="100" y="420"/>
+	<column name="id" not-null="true" sequence="public.sec_user">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="username">
+		<type name="varchar" length="11"/>
+	</column>
+	<column name="password">
+		<type name="varchar" length="11"/>
+	</column>
+	<column name="lastlogin" default-value="now()">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="creationDate" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="user_pk" type="pk-constr" table="public.&quot;user&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_employee" index="5"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="employee_fk" index="1"/>
+		<object name="user_uq" index="2"/>
+	</customidxs>
+	<initial-data>
+<![CDATA[id•username•password•lastlogin•creationDate•id_employee⸣
+1•apulido•password•••4⸣
+2•admin•password•••1⸣
+3•jarias•password•••3⸣
+4•juan•password•••2]]>
+	</initial-data>
+</table>
+
+<relationship name="user_has_one_employee" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#953e0b"
+	 src-table="public.employee"
+	 dst-table="public.&quot;user&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="employee_has_many_payslip" type="rel1n"
+	 src-col-pattern="{st}{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#b73ceb"
+	 src-table="public.employee"
+	 dst-table="public.payslip"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="payslip_has_many_hour" type="rel1n"
+	 src-col-pattern="{st}{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#fed282"
+	 src-table="public.payslip"
+	 dst-table="public.hour"
+	 src-required="false" dst-required="false"/>
+
+<table name="sell">
+	<schema name="public"/>
+	<position x="280" y="740"/>
+	<column name="id" not-null="true" identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="sell_pk" type="pk-constr" table="public.sell">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="product">
+	<schema name="public"/>
+	<position x="1440" y="780"/>
+	<column name="id" not-null="true" identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="product_pk" type="pk-constr" table="public.product">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_productType" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="productType_fk" index="1"/>
+	</customidxs>
+</table>
+
+<table name="productType">
+	<schema name="public"/>
+	<position x="1000" y="720"/>
+	<column name="id" not-null="true" identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="productType_pk" type="pk-constr" table="public.&quot;productType&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•name•description•createdAt•updatedAt⸣
+•Koru•••⸣
+•Twist•••⸣
+•Hei-Matau•••⸣
+•Manaia•••⸣
+•Circle•••⸣
+•Tiki•••⸣
+•Toki•••⸣
+•Whale•••⸣
+•Dolphin•••⸣
+•Turtle•••]]>
+	</initial-data>
+</table>
+
+<table name="operationType">
+	<schema name="public"/>
+	<position x="1020" y="940"/>
+	<column name="id" not-null="true" identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="operationType_pk" type="pk-constr" table="public.&quot;operationType&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•description•name⸣
+••input⸣
+••output]]>
+	</initial-data>
+</table>
+
+<table name="inventory">
+	<schema name="public"/>
+	<position x="80" y="880"/>
+	<column name="id" not-null="true" sequence="public.sec_inventory">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<column name="amount" default-value="0">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="inventory_pk" type="pk-constr" table="public.inventory">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_productType" index="5"/>
+		<object name="id_size" index="6"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="productType_fk" index="1"/>
+		<object name="size_fk" index="2"/>
+	</customidxs>
+</table>
+
+<relationship name="productType_has_many_product" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#bc0133"
+	 src-table="public.&quot;productType&quot;"
+	 dst-table="public.product"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="productType_has_many_operation" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#e7e438"
+	 src-table="public.&quot;productType&quot;"
+	 dst-table="public.inventory"
+	 src-required="false" dst-required="false"/>
+
+<table name="size">
+	<schema name="public"/>
+	<position x="100" y="1280"/>
+	<column name="id" not-null="true" identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="size_pk" type="pk-constr" table="public.size">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•name•createdAt•updatedAt⸣
+•small••⸣
+•medium••⸣
+•largue••]]>
+	</initial-data>
+</table>
+
+<relationship name="size_has_many_operation" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#0e6dd8"
+	 src-table="public.size"
+	 dst-table="public.inventory"
+	 src-required="false" dst-required="false"/>
+
+<table name="operation">
+	<schema name="public"/>
+	<position x="880" y="1260"/>
+	<column name="id" not-null="true" identity-type="BY DEFAULT">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="operation_pk" type="pk-constr" table="public.operation">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_operationType" index="3"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="operationType_fk" index="1"/>
+	</customidxs>
+	<initial-data>
+<![CDATA[id•name•description•id_operationType⸣
+•New piece••1⸣
+•Restoration••1⸣
+•Sale••2⸣
+•Damage••2]]>
+	</initial-data>
+</table>
+
+<relationship name="operationType_has_many_operation" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#be19b8"
+	 src-table="public.&quot;operationType&quot;"
+	 dst-table="public.operation"
+	 src-required="false" dst-required="false"/>
+
+<table name="movement">
+	<schema name="public"/>
+	<position x="500" y="1200"/>
+	<column name="id" not-null="true" sequence="public.sec_movement">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="createdAt" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="updatedAt" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="amount" default-value="0">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="username">
+		<type name="varchar" length="11"/>
+	</column>
+	<constraint name="movement_pk" type="pk-constr" table="public.movement">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_operation" index="6"/>
+		<object name="id_productType" index="7"/>
+		<object name="id_size" index="5"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="operation_fk" index="1"/>
+		<object name="productType_fk" index="2"/>
+		<object name="size_fk" index="0"/>
+	</customidxs>
+</table>
+
+<relationship name="size_has_many_movement" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#aa0923"
+	 src-table="public.size"
+	 dst-table="public.movement"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="operation_has_many_movement" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#47348a"
+	 src-table="public.operation"
+	 dst-table="public.movement"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="productType_has_many_movement" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#d75ac1"
+	 src-table="public.&quot;productType&quot;"
+	 dst-table="public.movement"
+	 src-required="false" dst-required="false"/>
+
+<table name="rol">
+	<schema name="public"/>
+	<position x="480" y="100"/>
+	<column name="id" not-null="true" identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="rol_pk" type="pk-constr" table="public.rol">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="resource">
+	<schema name="public"/>
+	<position x="860" y="100"/>
+	<column name="id" not-null="true" identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+
+	<customidxs object-type="column">
+		<object name="id_rol" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="rol_fk" index="0"/>
+	</customidxs>
+</table>
+
+<table name="userRol">
+	<schema name="public"/>
+	<position x="140" y="100"/>
+	<column name="createdAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+
+	<customidxs object-type="column">
+		<object name="id_rol" index="1"/>
+		<object name="id_user" index="0"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="rol_fk" index="1"/>
+		<object name="user_fk" index="0"/>
+	</customidxs>
+</table>
+
+<relationship name="user_has_many_userRol" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#01b072"
+	 src-table="public.&quot;user&quot;"
+	 dst-table="public.&quot;userRol&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rol_has_many_userRol" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#e2d2dd"
+	 src-table="public.rol"
+	 dst-table="public.&quot;userRol&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rol_has_many_resource" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#dae768"
+	 src-table="public.rol"
+	 dst-table="public.resource"
+	 src-required="false" dst-required="false"/>
+
+<table name="activity">
+	<schema name="public"/>
+	<position x="1620" y="620"/>
+	<column name="id" not-null="true" identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="255"/>
+	</column>
+	<constraint name="activity_pk" type="pk-constr" table="public.activity">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="activity_has_many_hour" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#fe9be9"
+	 src-table="public.activity"
+	 dst-table="public.hour"
+	 src-required="false" dst-required="false"/>
+
+<table name="order">
+	<schema name="public"/>
+	<position x="120" y="1540"/>
+	<column name="id" not-null="true" sequence="public.sec_order">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="order_pk" type="pk-constr" table="public.&quot;order&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_customer" index="4"/>
+		<object name="id_orderStatus" index="3"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="customer_fk" index="2"/>
+		<object name="orderStatus_fk" index="1"/>
+	</customidxs>
+	<initial-data>
+<![CDATA[id•createdAt•id_orderStatus•id_customer⸣
+1••1•1]]>
+	</initial-data>
+</table>
+
+<table name="catalog">
+	<schema name="public"/>
+	<position x="960" y="1620"/>
+	<column name="code" not-null="true">
+		<type name="varchar" length="4"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="255"/>
+	</column>
+	<constraint name="catalog_pk" type="pk-constr" table="public.catalog">
+		<columns names="code" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="typeCatalog">
+	<schema name="public"/>
+	<position x="1020" y="1540"/>
+</table>
+
+<table name="orderStatus">
+	<schema name="public"/>
+	<position x="600" y="1560"/>
+	<column name="id" not-null="true" identity-type="BY DEFAULT">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="orderStatus_pk" type="pk-constr" table="public.&quot;orderStatus&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•name⸣
+1•Received⸣
+2•Closed⸣
+3•In progress]]>
+	</initial-data>
+</table>
+
+<relationship name="orderStatus_has_many_order" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#872bd9"
+	 src-table="public.&quot;orderStatus&quot;"
+	 dst-table="public.&quot;order&quot;"
+	 src-required="false" dst-required="false"/>
+
+<table name="customer">
+	<schema name="public"/>
+	<position x="620" y="1820"/>
+	<column name="id" not-null="true" identity-type="BY DEFAULT">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="firstName">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="lastName">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="customer_pk" type="pk-constr" table="public.customer">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•firstName•lastName⸣
+1•steve•simmons]]>
+	</initial-data>
+</table>
+
+<relationship name="customer_has_many_order" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a01fa6"
+	 src-table="public.customer"
+	 dst-table="public.&quot;order&quot;"
+	 src-required="false" dst-required="false"/>
+
+<table name="parameter">
+	<schema name="public"/>
+	<position x="980" y="1820"/>
+	<column name="code" not-null="true">
+		<type name="varchar" length="9"/>
+	</column>
+	<column name="value">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="label">
+		<type name="varchar" length="150"/>
+	</column>
+	<column name="createdAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updatedAt" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="parameter_pk" type="pk-constr" table="public.parameter">
+		<columns names="code" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[code•value•label⸣
+COM_ADDR• 283 Karangahape Road, Samoa House•Company address⸣
+COM_NAME•Oro Negro•Company name⸣
+TAX_PERC•4•Tax Percentage⸣
+COST_HOUR•15•Cost per hour (NZD)]]>
+	</initial-data>
+</table>
+
+</dbmodel>

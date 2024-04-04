@@ -1,0 +1,36 @@
+:root {
+	--primary-color: #7B46A5;
+	--secundary-color: #5E2FC4;
+	--tertiary-color: #1C1C1C; 
+	--fourth-color: #AF7AD7; 
+	--primary-bg-color: #FFFFFF;
+	--second-bg-color: #F3F4F6; 
+}
+
+body {
+    background-color: var(--second-bg-color);
+}
+
+.swagger-ui .topbar {
+    background-color: var(--primary-color);
+}
+
+.swagger-ui .info .base-url {
+     
+}
+
+.swagger-ui .markdown p {
+     
+}
+
+.swagger-ui .btn.execute {
+     
+}
+
+.swagger-ui button {
+     
+}
+
+.swagger-ui .scheme-container {
+     
+}
